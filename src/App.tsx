@@ -9,22 +9,20 @@
  */
 
 import React from 'react';
-import {SafeAreaView, ScrollView, View, StatusBar} from 'react-native';
 
-import {Header} from 'react-native/Libraries/NewAppScreen';
+import {Provider} from 'react-redux';
+import store from './store';
+
+import PostListPage from './containers/PostListPage';
 
 declare const global: {HermesInternal: null | {}};
 
 const App = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView>
-          <Header />
-          <View>Edit</View>
-        </ScrollView>
-      </SafeAreaView>
+      <Provider store={store}>
+        <PostListPage />
+      </Provider>
     </>
   );
 };
