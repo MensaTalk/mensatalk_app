@@ -6,6 +6,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParamList} from '../navigation/RootNavigation';
 import {getAllRooms} from '../selectors/rooms';
 import {getRoomsStart} from '../slices/rooms';
+import RoomList from '../components/RoomList';
 
 type Props = StackScreenProps<RootStackParamList, 'RoomListPage'>;
 
@@ -21,11 +22,12 @@ const RoomListPage: React.FC<Props> = ({route, navigation}: Props) => {
   return (
     <>
       <Button
-        title="Go to PostDetailPage"
-        onPress={() => navigation.navigate('RoomDetailPage')}
+        title="Go to RoomListPage"
+        onPress={() => navigation.navigate('RoomListPage')}
       />
       <Text>{route.name}</Text>
       {rooms ? rooms.map((room) => <Text key={room.id}>{room.name}</Text>) : ''}
+      <RoomList rooms={rooms} onRoomClick={(room) => console.log(room)} />
     </>
   );
 };
