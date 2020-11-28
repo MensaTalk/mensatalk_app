@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Text} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 
-import {RootStackParamList} from '../App';
+import {RootStackParamList} from '../navigation/RootNavigation';
 
 type Props = StackScreenProps<RootStackParamList, 'PostListPage'>;
 

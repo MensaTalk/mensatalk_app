@@ -3,8 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {Button, Text} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 
-import {RootStackParamList} from '../App';
-
+import {RootStackParamList} from '../navigation/RootNavigation';
 import {getAllPosts} from '../selectors/posts';
 import {getPostsStart} from '../slices/posts';
 
