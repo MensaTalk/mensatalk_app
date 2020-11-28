@@ -1,6 +1,4 @@
-export interface PostInterface {
-  userId: number;
+export interface RoomInterface {
   id: number;
-  title: string;
-  body: string;
+  name: string;
 }

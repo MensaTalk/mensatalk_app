@@ -1,9 +1,9 @@
 import {combineReducers} from '@reduxjs/toolkit';
 
-import postReducer from './slices/posts';
+import roomReducer from './slices/rooms';
 
 const combinedReducers = combineReducers({
-  posts: postReducer,
+  rooms: roomReducer,
 });
 
 export default combinedReducers;

@@ -10,12 +10,12 @@ import {StackScreenProps} from '@react-navigation/stack';
 
 import {RootStackParamList} from '../navigation/RootNavigation';
 
-type Props = StackScreenProps<RootStackParamList, 'PostListPage'>;
+type Props = StackScreenProps<RootStackParamList, 'RoomDetailPage'>;
 
 const ws = new WebSocket('ws://192.168.2.113:3030');
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const PostDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
+const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
   const [messages, setMessages] = useState<String[]>([]);
   const [newMessage, setNewMessage] = useState('');
 
@@ -72,4 +72,4 @@ const PostDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
   );
 };
 
-export default PostDetailPage;
+export default RoomDetailPage;
