@@ -1,11 +1,16 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {Text} from 'react-native';
+import {Button, Text} from 'react-native';
+import {StackScreenProps} from '@react-navigation/stack';
+
+import {RootStackParamList} from '../App';
 
 import {getAllPosts} from '../selectors/posts';
 import {getPostsStart} from '../slices/posts';
 
-const PostListPage: React.FC = () => {
+type Props = StackScreenProps<RootStackParamList, 'PostListPage'>;
+
+const PostListPage: React.FC<Props> = ({route, navigation}: Props) => {
   const dispatch = useDispatch();
 
   const {posts} = useSelector(getAllPosts);
@@ -14,7 +19,18 @@ const PostListPage: React.FC = () => {
     dispatch(getPostsStart());
   }, [dispatch]);
 
-  return <>{posts ? posts.map((post) => <Text>{post.title}</Text>) : ''}</>;
+  return (
+    <>
+      <Button
+        title="Go to PostDetailPage"
+        onPress={() => navigation.navigate('PostDetailPage')}
+      />
+      <Text>{route.name}</Text>
+      {posts
+        ? posts.map((post) => <Text key={post.id}>{post.title}</Text>)
+        : ''}
+    </>
+  );
 };
 
 export default PostListPage;
