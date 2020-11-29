@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 
@@ -16,6 +16,9 @@ export const RootStack = createStackNavigator<RootStackParamList>();
 export interface RootNavigationProps {}
 
 export const RootNavigation: React.FC<RootNavigationProps> = ({}: RootNavigationProps) => {
+  const navTheme = DefaultTheme;
+  navTheme.colors.background = '#F5F5F5';
+
   return (
     <NavigationContainer>
       <RootStack.Navigator>
