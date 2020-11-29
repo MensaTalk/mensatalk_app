@@ -17,12 +17,12 @@ const MessageList: React.FC<MessageListProps> = ({
       <SafeAreaView style={styles.container}>
         <FlatList<MessageInterface>
           data={messages}
-          renderItem={({item}) => (
+          renderItem={({item, index}) => (
             <>
-              <MessageListItem message={item} myMessage={true} />
+              <MessageListItem key={index} message={item} myMessage={true} />
             </>
           )}
-          keyExtractor={(item) => Number(item.id).toString()}
+          keyExtractor={(_item, index) => index.toString()}
         />
       </SafeAreaView>
     </>

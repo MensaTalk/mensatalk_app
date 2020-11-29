@@ -23,10 +23,10 @@ const RoomList: React.FC<RoomListProps> = ({
       <SafeAreaView style={styles.container}>
         <FlatList<RoomInterface>
           data={rooms}
-          renderItem={({item}) => (
-            <RoomListItem room={item} onClick={onRoomClick} />
+          renderItem={({item, index}) => (
+            <RoomListItem key={index} room={item} onClick={onRoomClick} />
           )}
-          keyExtractor={(item) => Number(item.id).toString()}
+          keyExtractor={(_item, index) => index.toString()}
         />
       </SafeAreaView>
     </>
