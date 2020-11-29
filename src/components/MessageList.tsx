@@ -3,6 +3,7 @@ import React from 'react';
 import {MessageInterface} from '../types';
 
 import MessageListItem from './MessageListItem';
+import {FlatList, SafeAreaView, StyleSheet} from 'react-native';
 
 export interface MessageListProps {
   messages: MessageInterface[];
@@ -13,11 +14,26 @@ const MessageList: React.FC<MessageListProps> = ({
 }: MessageListProps) => {
   return (
     <>
-      {messages.map((message, index) => (
-        <MessageListItem key={index} message={message} />
-      ))}
+      <SafeAreaView style={styles.container}>
+        <FlatList<MessageInterface>
+          data={messages}
+          renderItem={({item}) => (
+            <>
+              <MessageListItem message={item} myMessage={true} />
+              <MessageListItem message={item} myMessage={false} />
+            </>
+          )}
+          keyExtractor={(item) => Number(item.id).toString()}
+        />
+      </SafeAreaView>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 10,
+  },
+});
 
 export default MessageList;

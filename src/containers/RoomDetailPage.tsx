@@ -5,7 +5,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 import {getMessagesStart, addMessage} from '../slices/messages';
 import {getSelectedRoom} from '../selectors/rooms';
 import {getAllMessages} from '../selectors/messages';
-import {MessageInterface} from '../types';
+import {MessageInterface, RoomInterface} from '../types';
 
 import {RootStackParamList} from '../navigation/RootNavigation';
 import Chat from '../components/Chat';
@@ -52,7 +52,12 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
 
   return (
     <>
-      <Chat messages={messages} onSendText={handleOnSendText} />
+      <Chat
+        messages={messages}
+        onSendText={handleOnSendText}
+        // @ts-ignore
+        room={selectedRoom}
+      />
     </>
   );
 };
