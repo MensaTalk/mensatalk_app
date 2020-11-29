@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, KeyboardAvoidingView, Platform, StyleSheet} from 'react-native';
-import {MessageInterface, RoomInterface} from '../types';
+import {MessageInterface, RoomInterface} from '../../types';
 import ChatInput from './ChatInput';
 
-import MessageList from './MessageList';
-import TextHeader from './utils/TextHeader';
-import Hairline from './utils/Hairline';
+import MessageList from '../Message/MessageList';
+import TextHeader from '../Header/Header';
+import Hairline from '../Header/Hairline';
 
 export interface ChatProps {
   room: RoomInterface;
@@ -20,7 +20,7 @@ const Chat: React.FC<ChatProps> = ({room, messages, onSendText}: ChatProps) => {
       <Hairline />
       <KeyboardAvoidingView
         style={styles.container}
-        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <View style={styles.inner}>
           <MessageList messages={messages} />
           <ChatInput onSendText={onSendText} />
