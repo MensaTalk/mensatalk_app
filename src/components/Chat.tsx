@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {View, KeyboardAvoidingView, Platform, StyleSheet} from 'react-native';
 import {MessageInterface, RoomInterface} from '../types';
 import ChatInput from './ChatInput';
 
@@ -18,10 +18,26 @@ const Chat: React.FC<ChatProps> = ({room, messages, onSendText}: ChatProps) => {
     <>
       <TextHeader title={room.name} />
       <Hairline />
-      <MessageList messages={messages} />
-      <ChatInput onSendText={onSendText} />
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
+        <View style={styles.inner}>
+          <MessageList messages={messages} />
+          <ChatInput onSendText={onSendText} />
+        </View>
+      </KeyboardAvoidingView>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  inner: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+});
 
 export default Chat;
