@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-
+import {View, StyleSheet} from 'react-native';
 import {MessageInterface} from '../../types';
+import TextElement from '../utils/TextElement';
 
 export interface MessageListItemProp {
   message: MessageInterface;
@@ -23,9 +23,7 @@ const MessageListItem: React.FC<MessageListItemProp> = ({
     <>
       <View style={style.messageBubbleContainer}>
         <View style={style.messageBubble}>
-          <Text style={style.chatText} key={message.id}>
-            {message.textMessage}
-          </Text>
+          <TextElement text={message.textMessage} />
         </View>
       </View>
     </>
@@ -37,7 +35,6 @@ const styles = {
     messageBubbleContainer: {
       paddingTop: 10,
       marginRight: 40,
-      flex: 1,
       alignItems: 'flex-start',
     },
     messageBubble: {
@@ -46,20 +43,12 @@ const styles = {
       paddingHorizontal: 10,
       paddingVertical: 10,
     },
-    chatText: {
-      fontFamily: 'Roboto',
-      fontStyle: 'normal',
-      fontWeight: 'normal',
-      fontSize: 16,
-      color: '#F9EFEF',
-    },
   }),
   right: StyleSheet.create({
     messageBubbleContainer: {
       paddingTop: 10,
       marginLeft: 40,
 
-      flex: 1,
       alignItems: 'flex-end',
     },
     messageBubble: {
@@ -67,13 +56,6 @@ const styles = {
       borderRadius: 15,
       paddingHorizontal: 10,
       paddingVertical: 10,
-    },
-    chatText: {
-      fontFamily: 'Roboto',
-      fontStyle: 'normal',
-      fontWeight: 'normal',
-      fontSize: 16,
-      color: '#F9EFEF',
     },
   }),
 };

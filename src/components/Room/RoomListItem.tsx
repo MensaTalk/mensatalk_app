@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, StyleSheet, Text, TouchableHighlight} from 'react-native';
+import {View, StyleSheet, TouchableHighlight} from 'react-native';
 import {RoomInterface} from '../../types';
 import Hairline from '../Header/Hairline';
+import TextElement from '../utils/TextElement';
 
 export interface RoomListItemProp {
   room: RoomInterface;
@@ -18,8 +19,8 @@ const RoomListItem: React.FC<RoomListItemProp> = ({
       underlayColor="#EAEAEA"
       onPress={() => (onClick ? onClick(room) : undefined)}>
       <View style={styles.item}>
-        <Text style={styles.title}>{room.name}</Text>
-        {/*<Text style={styles.subtitle}>Themen: {room.topics}</Text>*/}
+        <TextElement style={styles.contentPadding} text={room.name} size={2} />
+        {/*<TextElement style={styles.contentPadding} text={'bam bam'} size={3} />*/}
         <Hairline />
       </View>
     </TouchableHighlight>
@@ -31,22 +32,8 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     paddingLeft: 20,
   },
-  title: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: 22,
-    lineHeight: 26,
-    color: '#373F51',
+  contentPadding: {
     paddingVertical: 7, // if subtitle is used, then move this to subtitle
-  },
-  subtitle: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: 18,
-    lineHeight: 21,
-    color: '#657291',
   },
 });
 

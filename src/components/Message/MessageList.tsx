@@ -1,9 +1,7 @@
 import React from 'react';
-
+import {FlatList, SafeAreaView, StyleSheet, View} from 'react-native';
 import {MessageInterface} from '../../types';
-
 import MessageListItem from './MessageListItem';
-import {FlatList, SafeAreaView, StyleSheet} from 'react-native';
 
 export interface MessageListProps {
   messages: MessageInterface[];
@@ -17,12 +15,17 @@ const MessageList: React.FC<MessageListProps> = ({
       <SafeAreaView style={styles.container}>
         <FlatList<MessageInterface>
           data={messages}
-          renderItem={({item, index}) => (
+          renderItem={({item}) => (
             <>
-              <MessageListItem key={index} message={item} owner={true} />
+              <MessageListItem message={item} owner={true} />
+              <MessageListItem message={item} owner={true} />
+              <MessageListItem message={item} owner={false} />
+              <MessageListItem message={item} owner={true} />
+              <MessageListItem message={item} owner={false} />
             </>
           )}
-          keyExtractor={(_item, index) => index.toString()}
+          keyExtractor={(item, index) => index.toString()}
+          inverted={true}
         />
       </SafeAreaView>
     </>
