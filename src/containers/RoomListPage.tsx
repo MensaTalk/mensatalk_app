@@ -27,7 +27,7 @@ const RoomListPage: React.FC<Props> = ({route, navigation}: Props) => {
 
   return (
     <>
-      <RoomList rooms={rooms} onRoomClick={onRoomClick} title={'HTW-Berlin'} />
+      <RoomList rooms={rooms} onRoomClick={onRoomClick} title={'Rooms'} />
     </>
   );
 };
