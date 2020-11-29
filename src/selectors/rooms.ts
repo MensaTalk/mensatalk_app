@@ -9,3 +9,7 @@ export const getAllRooms = createSelector(
   [roomsDomain],
   (roomsState) => roomsState,
 );
+
+export const getSelectedRoom = createSelector([roomsDomain], (roomsState) =>
+  roomsState.rooms.find((room) => room.id === roomsState.selectedRoomId),
+);

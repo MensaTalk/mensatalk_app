@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import {
   KeyboardAvoidingView,
   SafeAreaView,
@@ -8,6 +9,8 @@ import {
 } from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 
+import {getSelectedRoom} from '../selectors/rooms';
+
 import {RootStackParamList} from '../navigation/RootNavigation';
 
 type Props = StackScreenProps<RootStackParamList, 'RoomDetailPage'>;
@@ -16,6 +19,8 @@ const ws = new WebSocket('ws://192.168.2.113:3030');
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
+  const selectedRoom = useSelector(getSelectedRoom);
+
   const [messages, setMessages] = useState<String[]>([]);
   const [newMessage, setNewMessage] = useState('');
 
@@ -52,6 +57,7 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
 
   return (
     <>
+      <Text>{selectedRoom ? selectedRoom.name : ''}</Text>
       <SafeAreaView>
         <KeyboardAvoidingView enabled={true} behavior="padding">
           <TextInput
