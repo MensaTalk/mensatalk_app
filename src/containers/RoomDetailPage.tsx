@@ -52,7 +52,11 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
 
   return (
     <>
-      <Chat messages={messages} onSendText={handleOnSendText} />
+      <Chat
+        messages={messages}
+        onSendText={handleOnSendText}
+        room={{id: 2, name: 'abteilung'}}
+      />
     </>
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text, TouchableHighlight} from 'react-native';
 import {RoomInterface} from '../types';
+import Hairline from './utils/Hairline';
 
 export interface RoomListItemProp {
   room: RoomInterface;
@@ -19,18 +20,13 @@ const RoomListItem: React.FC<RoomListItemProp> = ({
       <View style={styles.item}>
         <Text style={styles.title}>{room.name}</Text>
         {/*<Text style={styles.subtitle}>Themen: {room.topics}</Text>*/}
-        <View style={styles.hairline} />
+        <Hairline />
       </View>
     </TouchableHighlight>
   );
 };
 
 const styles = StyleSheet.create({
-  hairline: {
-    borderBottomColor: '#373F51',
-    borderBottomWidth: 1.5,
-    paddingVertical: 7,
-  },
   item: {
     paddingTop: 12,
     paddingLeft: 20,
@@ -42,6 +38,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     lineHeight: 26,
     color: '#373F51',
+    paddingVertical: 7, // if subtitle is used, then move this to subtitle
   },
   subtitle: {
     fontFamily: 'Roboto',
