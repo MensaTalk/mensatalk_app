@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {MessageInterface} from '../types';
+import {MessageInterface} from '../../types';
 
 import MessageListItem from './MessageListItem';
 import {FlatList, SafeAreaView, StyleSheet} from 'react-native';
@@ -20,7 +20,6 @@ const MessageList: React.FC<MessageListProps> = ({
           renderItem={({item}) => (
             <>
               <MessageListItem message={item} myMessage={true} />
-              <MessageListItem message={item} myMessage={false} />
             </>
           )}
           keyExtractor={(item) => Number(item.id).toString()}

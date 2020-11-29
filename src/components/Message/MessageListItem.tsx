@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 
-import {MessageInterface} from '../types';
+import {MessageInterface} from '../../types';
 
 export interface MessageListItemProp {
   message: MessageInterface;
