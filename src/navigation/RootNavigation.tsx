@@ -21,7 +21,10 @@ export const RootNavigation: React.FC<RootNavigationProps> = ({}: RootNavigation
 
   return (
     <NavigationContainer>
-      <RootStack.Navigator>
+      <RootStack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
         <RootStack.Screen name="RoomListPage" component={RoomListPage} />
         <RootStack.Screen name="RoomDetailPage" component={RoomDetailPage} />
       </RootStack.Navigator>
