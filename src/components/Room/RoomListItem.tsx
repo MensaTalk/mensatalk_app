@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text, TouchableHighlight} from 'react-native';
-import {RoomInterface} from '../types';
-import Hairline from './utils/Hairline';
+import {RoomInterface} from '../../types';
+import Hairline from '../Header/Hairline';
 
 export interface RoomListItemProp {
   room: RoomInterface;

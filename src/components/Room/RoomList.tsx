@@ -1,9 +1,9 @@
 import React from 'react';
 import {SafeAreaView, FlatList, StyleSheet, StatusBar} from 'react-native';
-import {RoomInterface} from '../types';
+import {RoomInterface} from '../../types';
 import RoomListItem from './RoomListItem';
-import TextHeader from './utils/TextHeader';
-import Hairline from './utils/Hairline';
+import TextHeader from '../Header/Header';
+import Hairline from '../Header/Hairline';
 
 export interface RoomListProps {
   rooms: RoomInterface[];
