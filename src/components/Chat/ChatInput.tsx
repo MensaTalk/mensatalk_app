@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, TouchableOpacity, TextInput, StyleSheet} from 'react-native';
-import TextElement from './utils/TextElement';
+import TextElement from '../utils/TextElement';
 export interface ChatInputProps {
   onSendText?: (text: string) => void;
 }
 
 const ChatInput: React.FC<ChatInputProps> = ({onSendText}: ChatInputProps) => {
-  const [inputText, setInputText] = React.useState('te3123e21e312es');
+  const [inputText, setInputText] = React.useState('');
 
   const handleOnPress = () => {
     if (onSendText) {

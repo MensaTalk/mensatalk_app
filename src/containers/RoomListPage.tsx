@@ -5,7 +5,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParamList} from '../navigation/RootNavigation';
 import {getAllRooms} from '../selectors/rooms';
 import {getRoomsStart, selectRoom} from '../slices/rooms';
-import RoomList from '../components/RoomList';
+import RoomList from '../components/Room/RoomList';
 import {RoomInterface} from '../types';
 
 type Props = StackScreenProps<RootStackParamList, 'RoomListPage'>;
@@ -27,7 +27,7 @@ const RoomListPage: React.FC<Props> = ({route, navigation}: Props) => {
 
   return (
     <>
-      <RoomList rooms={rooms} onRoomClick={onRoomClick} title={'HTW-Berlin'} />
+      <RoomList rooms={rooms} onRoomClick={onRoomClick} title={'Rooms'} />
     </>
   );
 };

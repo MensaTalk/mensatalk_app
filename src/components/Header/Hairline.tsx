@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
-export interface Hairline {}
+export interface HairlineProps {}
 
-const Hairline: React.FC<Hairline> = ({}: Hairline) => {
+const Hairline: React.FC<HairlineProps> = ({}: HairlineProps) => {
   return (
     <>
       <View style={styles.hairline} />

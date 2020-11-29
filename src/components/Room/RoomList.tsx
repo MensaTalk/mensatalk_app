@@ -1,8 +1,8 @@
 import React from 'react';
 import {SafeAreaView, View, FlatList, StyleSheet} from 'react-native';
-import {RoomInterface} from '../types';
+import {RoomInterface} from '../../types';
 import RoomListItem from './RoomListItem';
-import TextHeader from './utils/TextHeader';
+import TextHeader from '../Header/Header';
 
 export interface RoomListProps {
   rooms: RoomInterface[];

@@ -5,10 +5,10 @@ import {StackScreenProps} from '@react-navigation/stack';
 import {getMessagesStart, addMessage} from '../slices/messages';
 import {getSelectedRoom} from '../selectors/rooms';
 import {getAllMessages} from '../selectors/messages';
-import {MessageInterface, RoomInterface} from '../types';
+import {MessageInterface} from '../types';
 
 import {RootStackParamList} from '../navigation/RootNavigation';
-import Chat from '../components/Chat';
+import Chat from '../components/Chat/Chat';
 
 type Props = StackScreenProps<RootStackParamList, 'RoomDetailPage'>;
 

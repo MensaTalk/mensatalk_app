@@ -19,8 +19,7 @@ const TextHeader: React.FC<TextHeaderProps> = ({title}: TextHeaderProps) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-  },
+  container: {},
   textStyle: {
     marginTop: 22,
     marginLeft: 20,

@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, KeyboardAvoidingView, StyleSheet} from 'react-native';
-import {MessageInterface, RoomInterface} from '../types';
+import {MessageInterface, RoomInterface} from '../../types';
+import MessageList from '../Message/MessageList';
+import TextHeader from '../Header/Header';
 import ChatInput from './ChatInput';
-import MessageList from './MessageList';
-import TextHeader from './utils/TextHeader';
 
 export interface ChatProps {
   room: RoomInterface;

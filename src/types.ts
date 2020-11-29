@@ -8,3 +8,8 @@ export interface MessageInterface {
   textMessage: string;
   created_at: string;
 }
+
+export interface UserInterface {
+  id: number;
+  name: string;
+}

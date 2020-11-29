@@ -1,19 +1,19 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {MessageInterface} from '../types';
-import TextElement from './utils/TextElement';
+import {MessageInterface} from '../../types';
+import TextElement from '../utils/TextElement';
 
 export interface MessageListItemProp {
   message: MessageInterface;
-  myMessage: boolean;
+  owner: boolean;
 }
 
 const MessageListItem: React.FC<MessageListItemProp> = ({
   message,
-  myMessage,
+  owner,
 }: MessageListItemProp) => {
   var style;
-  if (myMessage) {
+  if (owner) {
     style = styles.right;
   } else {
     style = styles.left;
