@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {Button, Text} from 'react-native';
+import {Button} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 
 import {RootStackParamList} from '../navigation/RootNavigation';
@@ -10,6 +10,7 @@ import RoomList from '../components/RoomList';
 
 type Props = StackScreenProps<RootStackParamList, 'RoomListPage'>;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const RoomListPage: React.FC<Props> = ({route, navigation}: Props) => {
   const dispatch = useDispatch();
 
@@ -22,11 +23,9 @@ const RoomListPage: React.FC<Props> = ({route, navigation}: Props) => {
   return (
     <>
       <Button
-        title="Go to RoomListPage"
-        onPress={() => navigation.navigate('RoomListPage')}
+        title="Go to RoomDetailPage"
+        onPress={() => navigation.navigate('RoomDetailPage')}
       />
-      <Text>{route.name}</Text>
-      {rooms ? rooms.map((room) => <Text key={room.id}>{room.name}</Text>) : ''}
       <RoomList rooms={rooms} onRoomClick={(room) => console.log(room)} />
     </>
   );

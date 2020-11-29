@@ -1,21 +1,12 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  View,
-  FlatList,
-  StyleSheet,
-  Text,
-  StatusBar,
-  TouchableHighlight,
-} from 'react-native';
+import {SafeAreaView, FlatList, StyleSheet, StatusBar} from 'react-native';
 import {RoomInterface} from '../types';
-import RoomListItem from "./RoomListItem";
+import RoomListItem from './RoomListItem';
 
 export interface RoomListProps {
   rooms: RoomInterface[];
   onRoomClick?: (room: RoomInterface) => void;
 }
-
 
 const RoomList: React.FC<RoomListProps> = ({
   rooms,

@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-} from 'react-native';
+import {View, StyleSheet, Text, TouchableHighlight} from 'react-native';
 import {RoomInterface} from '../types';
 
 export interface RoomListItemProp {
@@ -20,7 +15,7 @@ const RoomListItem: React.FC<RoomListItemProp> = ({
     <TouchableHighlight
       activeOpacity={0.85}
       underlayColor="#EAEAEA"
-      onPress={() => onClick ? onClick(room) : undefined}>
+      onPress={() => (onClick ? onClick(room) : undefined)}>
       <View style={styles.item}>
         <Text style={styles.title}>{room.name}</Text>
         {/*<Text style={styles.subtitle}>Themen: {room.topics}</Text>*/}
