@@ -19,7 +19,7 @@ const MessageList: React.FC<MessageListProps> = ({
           data={messages}
           renderItem={({item, index}) => (
             <>
-              <MessageListItem key={index} message={item} myMessage={true} />
+              <MessageListItem key={index} message={item} owner={true} />
             </>
           )}
           keyExtractor={(_item, index) => index.toString()}

@@ -5,15 +5,15 @@ import {MessageInterface} from '../../types';
 
 export interface MessageListItemProp {
   message: MessageInterface;
-  myMessage: boolean;
+  owner: boolean;
 }
 
 const MessageListItem: React.FC<MessageListItemProp> = ({
   message,
-  myMessage,
+  owner,
 }: MessageListItemProp) => {
   var style;
-  if (myMessage) {
+  if (owner) {
     style = styles.right;
   } else {
     style = styles.left;
