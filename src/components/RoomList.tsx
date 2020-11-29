@@ -4,7 +4,6 @@ import {RoomInterface} from '../types';
 import RoomListItem from './RoomListItem';
 import TextHeader from './utils/TextHeader';
 import Hairline from './utils/Hairline';
-import MessageListItem from './MessageListItem';
 
 export interface RoomListProps {
   rooms: RoomInterface[];

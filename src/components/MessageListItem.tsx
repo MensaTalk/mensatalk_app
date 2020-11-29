@@ -12,7 +12,7 @@ const MessageListItem: React.FC<MessageListItemProp> = ({
   message,
   myMessage,
 }: MessageListItemProp) => {
-  var style = undefined;
+  var style;
   if (myMessage) {
     style = styles.right;
   } else {

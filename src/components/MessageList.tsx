@@ -1,10 +1,9 @@
 import React from 'react';
 
-import {MessageInterface, RoomInterface} from '../types';
+import {MessageInterface} from '../types';
 
 import MessageListItem from './MessageListItem';
-import {FlatList, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
-import RoomListItem from './RoomListItem';
+import {FlatList, SafeAreaView, StyleSheet} from 'react-native';
 
 export interface MessageListProps {
   messages: MessageInterface[];
