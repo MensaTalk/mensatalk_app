@@ -12,7 +12,7 @@ const MessageListItem: React.FC<MessageListItemProp> = ({
 }: MessageListItemProp) => {
   return (
     <>
-      <Text>{message}</Text>
+      <Text key={message.id}>{message.textMessage}</Text>
     </>
   );
 };

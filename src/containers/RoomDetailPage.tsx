@@ -1,12 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {
-  KeyboardAvoidingView,
-  SafeAreaView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 
 import {getMessagesStart, addMessage} from '../slices/messages';
@@ -15,6 +8,7 @@ import {getAllMessages} from '../selectors/messages';
 import {MessageInterface} from '../types';
 
 import {RootStackParamList} from '../navigation/RootNavigation';
+import Chat from '../components/Chat';
 
 type Props = StackScreenProps<RootStackParamList, 'RoomDetailPage'>;
 
@@ -26,8 +20,6 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
 
   const selectedRoom = useSelector(getSelectedRoom);
   const {messages} = useSelector(getAllMessages);
-
-  const [newMessage, setNewMessage] = useState('');
 
   useEffect(() => {
     selectedRoom && dispatch(getMessagesStart(selectedRoom.id));
@@ -54,37 +46,13 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
     console.log(e.code, e.reason);
   };
 
-  const handleSend = () => {
-    if (newMessage === '') {
-      return;
-    }
-    ws.send(newMessage);
-    setNewMessage('');
-  };
-
-  const handleChangeText = (e: string) => {
-    setNewMessage(e);
+  const handleOnSendText = (text: string) => {
+    ws.send(text);
   };
 
   return (
     <>
-      <Text>{selectedRoom ? selectedRoom.name : ''}</Text>
-      <SafeAreaView>
-        <KeyboardAvoidingView enabled={true} behavior="padding">
-          <TextInput
-            returnKeyType="send"
-            onChangeText={handleChangeText}
-            onSubmitEditing={handleSend}
-            value={newMessage}
-          />
-          <TouchableOpacity onPress={handleSend}>
-            <Text>Senden</Text>
-          </TouchableOpacity>
-        </KeyboardAvoidingView>
-      </SafeAreaView>
-      {messages.map((message, index) => (
-        <Text key={index}>Message: {message.textMessage}</Text>
-      ))}
+      <Chat messages={messages} onSendText={handleOnSendText} />
     </>
   );
 };

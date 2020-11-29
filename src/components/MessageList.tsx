@@ -13,8 +13,8 @@ const MessageList: React.FC<MessageListProps> = ({
 }: MessageListProps) => {
   return (
     <>
-      {messages.map((message) => (
-        <MessageListItem message={message} />
+      {messages.map((message, index) => (
+        <MessageListItem key={index} message={message} />
       ))}
     </>
   );
