@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {
   KeyboardAvoidingView,
   SafeAreaView,
@@ -9,7 +9,10 @@ import {
 } from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 
+import {getMessagesStart, addMessage} from '../slices/messages';
 import {getSelectedRoom} from '../selectors/rooms';
+import {getAllMessages} from '../selectors/messages';
+import {MessageInterface} from '../types';
 
 import {RootStackParamList} from '../navigation/RootNavigation';
 
@@ -19,20 +22,28 @@ const ws = new WebSocket('ws://192.168.2.113:3030');
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
-  const selectedRoom = useSelector(getSelectedRoom);
+  const dispatch = useDispatch();
 
-  const [messages, setMessages] = useState<String[]>([]);
+  const selectedRoom = useSelector(getSelectedRoom);
+  const {messages} = useSelector(getAllMessages);
+
   const [newMessage, setNewMessage] = useState('');
 
   useEffect(() => {
+    selectedRoom && dispatch(getMessagesStart(selectedRoom.id));
     ws.onopen = () => {
       console.log('Websocket opened.');
     };
-  }, []);
+  }, [dispatch, selectedRoom]);
 
   ws.onmessage = (e) => {
     console.log(`Received: ${e.data}`);
-    setMessages([...messages, e.data]);
+    const receivedMessage: MessageInterface = {
+      id: NaN,
+      textMessage: e.data,
+      created_at: '',
+    };
+    dispatch(addMessage(receivedMessage));
   };
 
   ws.onerror = (e) => {
@@ -72,7 +83,7 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
         </KeyboardAvoidingView>
       </SafeAreaView>
       {messages.map((message, index) => (
-        <Text key={index}>Message: {message}</Text>
+        <Text key={index}>Message: {message.textMessage}</Text>
       ))}
     </>
   );
