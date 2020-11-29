@@ -1,33 +1,30 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import TextElement from '../utils/TextElement';
+import Hairline from './Hairline';
 
-export interface HeaderProps {
+export interface TextHeaderProps {
   title: string;
 }
 
-const TextHeader: React.FC<HeaderProps> = ({title}: HeaderProps) => {
+const TextHeader: React.FC<TextHeaderProps> = ({title}: TextHeaderProps) => {
   return (
     <>
-      <View style={styles.textContainer}>
-        <Text style={styles.header}>{title}</Text>
+      <View style={styles.container}>
+        <TextElement text={title} size={1} style={styles.textStyle} />
+        <Hairline />
       </View>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  textContainer: {
+  container: {
+  },
+  textStyle: {
     marginTop: 22,
     marginLeft: 20,
     marginBottom: 10,
-  },
-  header: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: 32,
-    lineHeight: 37,
-    color: '#373F51',
   },
 });
 
