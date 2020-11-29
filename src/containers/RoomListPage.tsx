@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {Button} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 
 import {RootStackParamList} from '../navigation/RootNavigation';
 import {getAllRooms} from '../selectors/rooms';
-import {getRoomsStart} from '../slices/rooms';
+import {getRoomsStart, selectRoom} from '../slices/rooms';
 import RoomList from '../components/RoomList';
+import {RoomInterface} from '../types';
 
 type Props = StackScreenProps<RootStackParamList, 'RoomListPage'>;
 
@@ -20,13 +20,14 @@ const RoomListPage: React.FC<Props> = ({route, navigation}: Props) => {
     dispatch(getRoomsStart());
   }, [dispatch]);
 
+  const onRoomClick = (room: RoomInterface) => {
+    dispatch(selectRoom(room.id));
+    navigation.navigate('RoomDetailPage');
+  };
+
   return (
     <>
-      <Button
-        title="Go to RoomDetailPage"
-        onPress={() => navigation.navigate('RoomDetailPage')}
-      />
-      <RoomList rooms={rooms} onRoomClick={(room) => console.log(room)} />
+      <RoomList rooms={rooms} onRoomClick={onRoomClick} />
     </>
   );
 };
