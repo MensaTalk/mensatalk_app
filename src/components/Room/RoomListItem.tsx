@@ -17,7 +17,7 @@ const RoomListItem: React.FC<RoomListItemProp> = ({
     <TouchableHighlight
       activeOpacity={0.85}
       underlayColor="#EAEAEA"
-      onPress={() => (onClick ? onClick(room) : undefined)}>
+      onPress={() => onClick && onClick(room)}>
       <View style={styles.item}>
         <TextElement style={styles.contentPadding} text={room.name} size={2} />
         {/*<TextElement style={styles.contentPadding} text={'bam bam'} size={3} />*/}
