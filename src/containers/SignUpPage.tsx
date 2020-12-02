@@ -10,7 +10,9 @@ type Props = StackScreenProps<RootStackParamList, 'RoomListPage'>;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const SignUpPage: React.FC<Props> = ({route, navigation}: Props) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSignUp = (signUpUser: SignUpUserInterface) => {};
+  const onSignUp = (signUpUser: SignUpUserInterface) => {
+    navigation.navigate('RoomListPage');
+  };
 
   return (
     <>
