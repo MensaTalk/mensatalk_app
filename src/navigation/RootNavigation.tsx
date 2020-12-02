@@ -5,8 +5,12 @@ import 'react-native-gesture-handler';
 
 import RoomDetailPage from '../containers/RoomDetailPage';
 import RoomListPage from '../containers/RoomListPage';
+import SignUpPage from '../containers/SignUpPage';
+import SignInPage from '../containers/SignInPage';
 
 export type RootStackParamList = {
+  SignInPage: undefined;
+  SignUpPage: undefined;
   RoomListPage: undefined;
   RoomDetailPage: undefined;
 };
@@ -25,6 +29,8 @@ export const RootNavigation: React.FC<RootNavigationProps> = ({}: RootNavigation
         screenOptions={{
           headerShown: false,
         }}>
+        <RootStack.Screen name="SignInPage" component={SignInPage} />
+        <RootStack.Screen name="SignUpPage" component={SignUpPage} />
         <RootStack.Screen name="RoomListPage" component={RoomListPage} />
         <RootStack.Screen name="RoomDetailPage" component={RoomDetailPage} />
       </RootStack.Navigator>
