@@ -21,7 +21,7 @@ declare const global: {HermesInternal: null | {}};
 const App = () => {
   return (
     <>
-      <StatusBar backgroundColor="#373F51" />
+      <StatusBar backgroundColor="#5CBACB" />
 
       <Provider store={store}>
         <RootNavigation />

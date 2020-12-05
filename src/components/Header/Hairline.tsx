@@ -13,7 +13,7 @@ const Hairline: React.FC<HairlineProps> = ({}: HairlineProps) => {
 
 const styles = StyleSheet.create({
   hairline: {
-    borderBottomColor: '#373F51',
+    borderBottomColor: '#5CBACB',
     borderBottomWidth: 1.5,
   },
 });
