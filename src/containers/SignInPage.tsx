@@ -3,7 +3,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 
 import {SignInUserInterface} from '../types';
 import {RootStackParamList} from '../navigation/RootNavigation';
-import SignInForm from '../components/SignIn/SignInForm';
+import SignInForm from '../components/Form/SignInForm';
 
 type Props = StackScreenProps<RootStackParamList, 'SignInPage'>;
 
@@ -14,13 +14,9 @@ const SignInPage: React.FC<Props> = ({route, navigation}: Props) => {
     navigation.navigate('RoomListPage');
   };
 
-  const onRedirectSignUp = () => {
-    navigation.navigate('SignUpPage');
-  };
-
   return (
     <>
-      <SignInForm onSignIn={onSignIn} onRedirectSignUp={onRedirectSignUp} />
+      <SignInForm onSignIn={onSignIn} />
     </>
   );
 };

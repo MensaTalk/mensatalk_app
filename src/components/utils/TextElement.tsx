@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 32,
     lineHeight: 37,
-    color: '#373F51',
+    color: '#5CBACB',
   },
   text2: {
     fontFamily: 'Roboto',
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 22,
     lineHeight: 26,
-    color: '#373F51',
+    color: '#5CBACB',
   },
   text3: {
     fontFamily: 'Roboto',
@@ -61,14 +61,14 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     fontSize: 18,
     lineHeight: 21,
-    color: '#657291',
+    color: '#5CBACB',
   },
   text4: {
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: 16,
-    color: '#F5F5F5',
+    color: '#FAFCFC',
   },
 });
 
