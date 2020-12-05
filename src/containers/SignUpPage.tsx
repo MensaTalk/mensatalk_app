@@ -3,7 +3,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 
 import {SignUpUserInterface} from '../types';
 import {RootStackParamList} from '../navigation/RootNavigation';
-import SignUpForm from '../components/SignUp/SignUpForm';
+import SignUpForm from '../components/Form/SignUpForm';
 
 type Props = StackScreenProps<RootStackParamList, 'RoomListPage'>;
 
