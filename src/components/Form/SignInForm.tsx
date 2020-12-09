@@ -17,7 +17,7 @@ export interface SignInFormProps {
 
 const SignInForm: React.FC<SignInFormProps> = ({onSignIn}: SignInFormProps) => {
   const validateForm = () => {
-    const dummyUser: SignUserInterface = {username: '', password: ''};
+    const dummyUser: SignUserInterface = {username: 'demo1', password: 'demo1'};
     onSignIn(dummyUser);
   };
 
