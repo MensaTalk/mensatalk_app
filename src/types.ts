@@ -10,12 +10,7 @@ export interface MessageInterface {
 }
 
 // JWT
-export interface SignUpUserInterface {
-  username: string;
-  password: string;
-}
-
-export interface SignInUserInterface {
+export interface SignUserInterface {
   username: string;
   password: string;
 }
