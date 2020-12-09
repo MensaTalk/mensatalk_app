@@ -18,8 +18,8 @@ export interface SignUpFormProps {
 const SignUpForm: React.FC<SignUpFormProps> = ({onSignUp}: SignUpFormProps) => {
   const validateForm = () => {
     const dummyUser: SignUserInterface = {
-      username: '',
-      password: '',
+      username: 'demo2',
+      password: 'demo2',
     };
     onSignUp(dummyUser);
   };
