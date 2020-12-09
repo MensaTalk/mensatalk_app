@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -16,8 +16,14 @@ export interface SignInFormProps {
 }
 
 const SignInForm: React.FC<SignInFormProps> = ({onSignIn}: SignInFormProps) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   const validateForm = () => {
-    const dummyUser: SignUserInterface = {username: 'demo1', password: 'demo1'};
+    const dummyUser: SignUserInterface = {
+      username: username,
+      password: password,
+    };
     onSignIn(dummyUser);
   };
 
@@ -26,10 +32,18 @@ const SignInForm: React.FC<SignInFormProps> = ({onSignIn}: SignInFormProps) => {
       <KeyboardAvoidingView style={styles.container}>
         <Logo />
         <View style={styles.form}>
-          <FormInput placeholderText={'Username'} secure={false} />
+          <FormInput
+            placeholderText={'Username'}
+            secure={false}
+            onChangeText={(text) => setUsername(text)}
+          />
         </View>
         <View style={styles.form}>
-          <FormInput placeholderText={'Password'} secure={true} />
+          <FormInput
+            placeholderText={'Password'}
+            secure={true}
+            onChangeText={(text) => setPassword(text)}
+          />
         </View>
         <View style={styles.form}>
           <TouchableOpacity

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -16,12 +16,15 @@ export interface SignUpFormProps {
 }
 
 const SignUpForm: React.FC<SignUpFormProps> = ({onSignUp}: SignUpFormProps) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   const validateForm = () => {
-    const dummyUser: SignUserInterface = {
-      username: 'demo2',
-      password: 'demo2',
+    const signUser: SignUserInterface = {
+      username: username,
+      password: password,
     };
-    onSignUp(dummyUser);
+    onSignUp(signUser);
   };
 
   return (
@@ -30,10 +33,18 @@ const SignUpForm: React.FC<SignUpFormProps> = ({onSignUp}: SignUpFormProps) => {
         <Logo />
 
         <View style={styles.form}>
-          <FormInput placeholderText={'Username'} secure={false} />
+          <FormInput
+            placeholderText={'Username'}
+            secure={false}
+            onChangeText={(text) => setUsername(text)}
+          />
         </View>
         <View style={styles.form}>
-          <FormInput placeholderText={'Password'} secure={true} />
+          <FormInput
+            placeholderText={'Password'}
+            secure={true}
+            onChangeText={(text) => setPassword(text)}
+          />
         </View>
         <View style={styles.form}>
           <FormInput placeholderText={'Confirm Password'} secure={true} />
