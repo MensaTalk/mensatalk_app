@@ -1,18 +1,19 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {StackScreenProps} from '@react-navigation/stack';
+import io from 'socket.io-client';
 
 import {getMessagesStart, addMessage} from '../slices/messages';
 import {getSelectedRoom} from '../selectors/rooms';
 import {getAllMessages} from '../selectors/messages';
-import {MessageInterface} from '../types';
+import {ActualMessage, MessageInterface} from '../types';
 
 import {RootStackParamList} from '../navigation/RootNavigation';
 import Chat from '../components/Chat/Chat';
 
 type Props = StackScreenProps<RootStackParamList, 'RoomDetailPage'>;
 
-const ws = new WebSocket('ws://192.168.2.113:3030');
+const socket = io.connect('http://192.168.2.110:9001');
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
@@ -23,31 +24,22 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
 
   useEffect(() => {
     selectedRoom && dispatch(getMessagesStart(selectedRoom.id));
-    ws.onopen = () => {
-      console.log('Websocket opened.');
-    };
+    socket.on('connect', () => {});
   }, [dispatch, selectedRoom]);
 
-  ws.onmessage = (e) => {
-    console.log(`Received: ${e.data}`);
+  socket.on('message', (data: ActualMessage) => {
+    console.log(`Received: ${data.payload}`);
     const receivedMessage: MessageInterface = {
       id: NaN,
-      textMessage: e.data,
+      textMessage: data.payload,
       created_at: '',
     };
     dispatch(addMessage(receivedMessage));
-  };
-
-  ws.onerror = (e) => {
-    console.log(`Error: ${e.message}`);
-  };
-
-  ws.onclose = (e) => {
-    console.log(e.code, e.reason);
-  };
+  });
 
   const handleOnSendText = (text: string) => {
-    ws.send(text);
+    const actualMessage: ActualMessage = {payload: text};
+    socket.emit('message', actualMessage);
   };
 
   return (

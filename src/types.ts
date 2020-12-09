@@ -24,3 +24,8 @@ export interface SignInUserInterface {
   username: string;
   password: string;
 }
+
+// Socket IO
+export interface ActualMessage {
+  payload: string;
+}
