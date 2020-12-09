@@ -14,6 +14,9 @@ export interface SignUserInterface {
   username: string;
   password: string;
 }
+export interface TokenInterface {
+  token: string;
+}
 
 // Socket IO
 export interface ActualMessage {
