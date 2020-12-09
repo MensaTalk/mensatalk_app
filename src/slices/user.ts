@@ -23,7 +23,22 @@ const userSlice = createSlice({
       state.isLoading = true;
       state.error = undefined;
     },
-    signupUserFailed(state, {payload}: PayloadAction<string>) {
+    signUpUserFailed(state, {payload}: PayloadAction<string>) {
+      state.token = undefined;
+      state.error = payload;
+      state.isLoading = false;
+    },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    signInUserStart(state, {payload}: PayloadAction<SignUserInterface>) {
+      state.isLoading = true;
+      state.error = undefined;
+    },
+    signInUserSuccess(state, {payload}: PayloadAction<TokenInterface>) {
+      state.token = payload.token;
+      state.isLoading = true;
+      state.error = undefined;
+    },
+    signInUserFailed(state, {payload}: PayloadAction<string>) {
       state.token = undefined;
       state.error = payload;
       state.isLoading = false;
@@ -34,7 +49,10 @@ const userSlice = createSlice({
 export const {
   signUpUserStart,
   signUpUserSuccess,
-  signupUserFailed,
+  signUpUserFailed,
+  signInUserStart,
+  signInUserSuccess,
+  signInUserFailed,
 } = userSlice.actions;
 
 export default userSlice.reducer;

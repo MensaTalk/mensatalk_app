@@ -7,10 +7,14 @@ import {request} from '../utils/client';
 import {
   signUpUserStart,
   signUpUserSuccess,
-  signupUserFailed,
+  signUpUserFailed,
+  signInUserStart,
+  signInUserSuccess,
+  signInUserFailed,
 } from '../slices/user';
 
 const apiSignUpUrl = 'https://mensatalk.herokuapp.com/register';
+const apiSignInUrl = 'https://mensatalk.herokuapp.com/authenticate';
 
 function* handleSignUpUser(action: PayloadAction<SignUserInterface>) {
   try {
@@ -24,10 +28,27 @@ function* handleSignUpUser(action: PayloadAction<SignUserInterface>) {
     });
     yield put(signUpUserSuccess(token));
   } catch (error) {
-    yield put(signupUserFailed(error.toString()));
+    yield put(signUpUserFailed(error.toString()));
+  }
+}
+
+function* handleSignInUser(action: PayloadAction<SignUserInterface>) {
+  try {
+    const token: TokenInterface = yield call(request, apiSignInUrl, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json;charset=UTF-8',
+      },
+      body: JSON.stringify(action.payload),
+    });
+    yield put(signInUserSuccess(token));
+  } catch (error) {
+    yield put(signInUserFailed(error.toString()));
   }
 }
 
 export function* usersSaga() {
   yield takeEvery(signUpUserStart.type, handleSignUpUser);
+  yield takeEvery(signInUserStart.type, handleSignInUser);
 }
