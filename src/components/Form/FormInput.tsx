@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: 16,
-    color: 'white',
+    color: '#5CBACB',
   },
 });
 

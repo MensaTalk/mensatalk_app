@@ -35,7 +35,7 @@ const ChatInput: React.FC<ChatInputProps> = ({onSendText}: ChatInputProps) => {
 
 const styles = StyleSheet.create({
   submitButton: {
-    backgroundColor: '#89B3CF',
+    backgroundColor: '#5CBACB',
     padding: 10,
   },
   centerText: {
