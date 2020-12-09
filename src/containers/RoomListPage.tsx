@@ -4,6 +4,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 
 import {RootStackParamList} from '../navigation/RootNavigation';
 import {getAllRooms} from '../selectors/rooms';
+import {getUser} from '../selectors/user';
 import {getRoomsStart, selectRoom} from '../slices/rooms';
 import RoomList from '../components/Room/RoomList';
 import {RoomInterface} from '../types';
@@ -15,9 +16,14 @@ const RoomListPage: React.FC<Props> = ({route, navigation}: Props) => {
   const dispatch = useDispatch();
 
   const {rooms} = useSelector(getAllRooms);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const {token, isLoading, error} = useSelector(getUser);
 
   useEffect(() => {
-    dispatch(getRoomsStart());
+    if (token) {
+      dispatch(getRoomsStart(token));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   const onRoomClick = (room: RoomInterface) => {
