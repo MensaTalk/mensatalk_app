@@ -1,38 +1,19 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 
-import {SignInUserInterface, SignUpUserInterface} from '../../types';
 import FormButton from './FormButton';
 import Title from '../utils/TextElement';
 import Logo from '../utils/Logo';
 
 export interface StartupFormProps {
-  onSignUp: (signUpUser: SignUpUserInterface) => void;
-  onSignIn: (signInUser: SignInUserInterface) => void;
+  onSignUp: () => void;
+  onSignIn: () => void;
 }
 
 const StartForm: React.FC<StartupFormProps> = ({
   onSignUp,
   onSignIn,
 }: StartupFormProps) => {
-  const validateSignUpForm = () => {
-    const dummyUser: SignUpUserInterface = {
-      username: '',
-      email: '',
-      password: '',
-    };
-    onSignUp(dummyUser);
-  };
-
-  const validateSignInForm = () => {
-    const dummyUser: SignUpUserInterface = {
-      username: '',
-      email: '',
-      password: '',
-    };
-    onSignIn(dummyUser);
-  };
-
   return (
     <>
       <View style={styles.container}>
@@ -40,12 +21,12 @@ const StartForm: React.FC<StartupFormProps> = ({
         <View style={styles.form}>
           <TouchableOpacity
             style={styles.createButtonContainer}
-            onPress={validateSignUpForm}>
+            onPress={onSignUp}>
             <Title text={'CREATE ACCOUNT'} style={styles.createButtonText} />
           </TouchableOpacity>
         </View>
         <View style={styles.form}>
-          <FormButton buttonText={'LOGIN'} onClick={validateSignInForm} />
+          <FormButton buttonText={'LOGIN'} onClick={onSignIn} />
         </View>
       </View>
     </>

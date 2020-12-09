@@ -6,18 +6,18 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {SignInUserInterface} from '../../types';
+import {SignUserInterface} from '../../types';
 import FormInput from './FormInput';
 import Title from '../utils/TextElement';
 import Logo from '../utils/Logo';
 
 export interface SignInFormProps {
-  onSignIn: (signInUser: SignInUserInterface) => void;
+  onSignIn: (signUser: SignUserInterface) => void;
 }
 
 const SignInForm: React.FC<SignInFormProps> = ({onSignIn}: SignInFormProps) => {
   const validateForm = () => {
-    const dummyUser: SignInUserInterface = {username: '', password: ''};
+    const dummyUser: SignUserInterface = {username: '', password: ''};
     onSignIn(dummyUser);
   };
 

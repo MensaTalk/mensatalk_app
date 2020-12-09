@@ -6,20 +6,19 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {SignUpUserInterface} from '../../types';
+import {SignUserInterface} from '../../types';
 import FormInput from './FormInput';
 import Title from '../utils/TextElement';
 import Logo from '../utils/Logo';
 
 export interface SignUpFormProps {
-  onSignUp: (signUpUser: SignUpUserInterface) => void;
+  onSignUp: (signUser: SignUserInterface) => void;
 }
 
 const SignUpForm: React.FC<SignUpFormProps> = ({onSignUp}: SignUpFormProps) => {
   const validateForm = () => {
-    const dummyUser: SignUpUserInterface = {
+    const dummyUser: SignUserInterface = {
       username: '',
-      email: '',
       password: '',
     };
     onSignUp(dummyUser);
@@ -32,9 +31,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({onSignUp}: SignUpFormProps) => {
 
         <View style={styles.form}>
           <FormInput placeholderText={'Username'} secure={false} />
-        </View>
-        <View style={styles.form}>
-          <FormInput placeholderText={'E-Mail'} secure={false} />
         </View>
         <View style={styles.form}>
           <FormInput placeholderText={'Password'} secure={true} />
