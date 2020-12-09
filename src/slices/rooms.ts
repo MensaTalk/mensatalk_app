@@ -15,7 +15,8 @@ const roomsSlice = createSlice({
   name: 'room',
   initialState,
   reducers: {
-    getRoomsStart(state) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    getRoomsStart(state, {payload}: PayloadAction<string>) {
       state.isLoading = true;
       state.rooms = [];
       state.error = undefined;
