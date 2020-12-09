@@ -25,7 +25,6 @@ const SignUpPage: React.FC<Props> = ({route, navigation}: Props) => {
   }, [process, token]);
 
   const onSignUp = (signUser: SignUserInterface) => {
-    console.log(signUser);
     setProcess(true);
     dispatch(signUpUserStart(signUser));
   };
