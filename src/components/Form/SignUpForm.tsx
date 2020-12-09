@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -6,23 +6,25 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {SignUpUserInterface} from '../../types';
+import {SignUserInterface} from '../../types';
 import FormInput from './FormInput';
 import Title from '../utils/TextElement';
 import Logo from '../utils/Logo';
 
 export interface SignUpFormProps {
-  onSignUp: (signUpUser: SignUpUserInterface) => void;
+  onSignUp: (signUser: SignUserInterface) => void;
 }
 
 const SignUpForm: React.FC<SignUpFormProps> = ({onSignUp}: SignUpFormProps) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   const validateForm = () => {
-    const dummyUser: SignUpUserInterface = {
-      username: '',
-      email: '',
-      password: '',
+    const signUser: SignUserInterface = {
+      username: username,
+      password: password,
     };
-    onSignUp(dummyUser);
+    onSignUp(signUser);
   };
 
   return (
@@ -31,13 +33,18 @@ const SignUpForm: React.FC<SignUpFormProps> = ({onSignUp}: SignUpFormProps) => {
         <Logo />
 
         <View style={styles.form}>
-          <FormInput placeholderText={'Username'} secure={false} />
+          <FormInput
+            placeholderText={'Username'}
+            secure={false}
+            onChangeText={(text) => setUsername(text)}
+          />
         </View>
         <View style={styles.form}>
-          <FormInput placeholderText={'E-Mail'} secure={false} />
-        </View>
-        <View style={styles.form}>
-          <FormInput placeholderText={'Password'} secure={true} />
+          <FormInput
+            placeholderText={'Password'}
+            secure={true}
+            onChangeText={(text) => setPassword(text)}
+          />
         </View>
         <View style={styles.form}>
           <FormInput placeholderText={'Confirm Password'} secure={true} />

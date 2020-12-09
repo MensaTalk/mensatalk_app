@@ -5,12 +5,14 @@ export interface FormInputProps {
   placeholderText: string;
   style?: any;
   secure?: boolean;
+  onChangeText?: (text: string) => void;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
   placeholderText,
   style,
   secure,
+  onChangeText,
 }: FormInputProps) => {
   return (
     <>
@@ -20,6 +22,7 @@ const FormInput: React.FC<FormInputProps> = ({
           placeholderTextColor={'#5CBACB'}
           secureTextEntry={secure === true}
           style={[styles.textInput, style]}
+          onChangeText={(value) => onChangeText && onChangeText(value)}
         />
       </View>
     </>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -6,18 +6,24 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {SignInUserInterface} from '../../types';
+import {SignUserInterface} from '../../types';
 import FormInput from './FormInput';
 import Title from '../utils/TextElement';
 import Logo from '../utils/Logo';
 
 export interface SignInFormProps {
-  onSignIn: (signInUser: SignInUserInterface) => void;
+  onSignIn: (signUser: SignUserInterface) => void;
 }
 
 const SignInForm: React.FC<SignInFormProps> = ({onSignIn}: SignInFormProps) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   const validateForm = () => {
-    const dummyUser: SignInUserInterface = {username: '', password: ''};
+    const dummyUser: SignUserInterface = {
+      username: username,
+      password: password,
+    };
     onSignIn(dummyUser);
   };
 
@@ -26,10 +32,18 @@ const SignInForm: React.FC<SignInFormProps> = ({onSignIn}: SignInFormProps) => {
       <KeyboardAvoidingView style={styles.container}>
         <Logo />
         <View style={styles.form}>
-          <FormInput placeholderText={'Username'} secure={false} />
+          <FormInput
+            placeholderText={'Username'}
+            secure={false}
+            onChangeText={(text) => setUsername(text)}
+          />
         </View>
         <View style={styles.form}>
-          <FormInput placeholderText={'Password'} secure={true} />
+          <FormInput
+            placeholderText={'Password'}
+            secure={true}
+            onChangeText={(text) => setPassword(text)}
+          />
         </View>
         <View style={styles.form}>
           <TouchableOpacity

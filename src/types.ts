@@ -9,20 +9,13 @@ export interface MessageInterface {
   created_at: string;
 }
 
-export interface UserInterface {
-  id: number;
-  name: string;
-}
-
-export interface SignUpUserInterface {
-  username: string;
-  email: string;
-  password: string;
-}
-
-export interface SignInUserInterface {
+// JWT
+export interface SignUserInterface {
   username: string;
   password: string;
+}
+export interface TokenInterface {
+  token: string;
 }
 
 // Socket IO
