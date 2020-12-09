@@ -9,14 +9,9 @@ export interface MessageInterface {
   created_at: string;
 }
 
-export interface UserInterface {
-  id: number;
-  name: string;
-}
-
+// JWT
 export interface SignUpUserInterface {
   username: string;
-  email: string;
   password: string;
 }
 
