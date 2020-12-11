@@ -1,36 +1,43 @@
 import React, {useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  KeyboardAvoidingView,
-  TouchableOpacity,
-} from 'react-native';
+import {View, StyleSheet, KeyboardAvoidingView} from 'react-native';
 
 import {SignUserInterface} from '../../types';
-import FormInput from './FormInput';
-import Title from '../utils/TextElement';
+import FormInput from '../utils/FormInput';
 import Logo from '../utils/Logo';
+import Loading from '../utils/Loading';
+import FormButton from '../utils/FormButton';
+import Error from '../utils/Error';
 
 export interface SignInFormProps {
   onSignIn: (signUser: SignUserInterface) => void;
+  isLoading: boolean;
+  error: string | undefined;
 }
 
-const SignInForm: React.FC<SignInFormProps> = ({onSignIn}: SignInFormProps) => {
+const SignInForm: React.FC<SignInFormProps> = ({
+  onSignIn,
+  isLoading,
+  error,
+}: SignInFormProps) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const validateForm = () => {
-    const dummyUser: SignUserInterface = {
+    const user: SignUserInterface = {
       username: username,
       password: password,
     };
-    onSignIn(dummyUser);
+    onSignIn(user);
   };
-
+  console.log(error);
   return (
     <>
       <KeyboardAvoidingView style={styles.container}>
         <Logo />
+        <Loading isVisible={isLoading} />
+        <View style={styles.form}>
+          <Error errorMessage={error} />
+        </View>
         <View style={styles.form}>
           <FormInput
             placeholderText={'Username'}
@@ -46,11 +53,11 @@ const SignInForm: React.FC<SignInFormProps> = ({onSignIn}: SignInFormProps) => {
           />
         </View>
         <View style={styles.form}>
-          <TouchableOpacity
-            style={styles.createButtonContainer}
-            onPress={validateForm}>
-            <Title text={'LET ME IN'} style={styles.createButtonText} />
-          </TouchableOpacity>
+          <FormButton
+            buttonText={'Login'}
+            onClick={validateForm}
+            reverse={true}
+          />
         </View>
       </KeyboardAvoidingView>
     </>
@@ -66,26 +73,6 @@ const styles = StyleSheet.create({
   form: {
     marginHorizontal: 25,
     marginVertical: 4,
-  },
-  createButtonContainer: {
-    backgroundColor: '#5CBACB',
-    borderRadius: 10,
-
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-
-    elevation: 4,
-  },
-  createButtonText: {
-    height: 60,
-    textAlignVertical: 'center',
-    textAlign: 'center',
-    color: '#FAFCFC',
   },
 });
 
