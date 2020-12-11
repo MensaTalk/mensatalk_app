@@ -20,7 +20,7 @@ const userSlice = createSlice({
     },
     signUpUserSuccess(state, {payload}: PayloadAction<TokenInterface>) {
       state.token = payload.token;
-      state.isLoading = true;
+      state.isLoading = false;
       state.error = undefined;
     },
     signUpUserFailed(state, {payload}: PayloadAction<string>) {
@@ -35,7 +35,7 @@ const userSlice = createSlice({
     },
     signInUserSuccess(state, {payload}: PayloadAction<TokenInterface>) {
       state.token = payload.token;
-      state.isLoading = true;
+      state.isLoading = false;
       state.error = undefined;
     },
     signInUserFailed(state, {payload}: PayloadAction<string>) {
