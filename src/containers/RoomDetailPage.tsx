@@ -31,7 +31,7 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
       if (clientSocket) {
         clientSocket.disconnect();
       }
-      clientSocket = io.connect('http://192.168.2.113:9001', {
+      clientSocket = io.connect('http://mensachat.herokuapp.com', {
         query: {
           roomId: selectedRoom.id,
           name: 'alice',
