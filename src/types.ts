@@ -19,6 +19,10 @@ export interface TokenInterface {
 }
 
 // Socket IO
-export interface ActualMessage {
+export interface ClientMessage {
   payload: string;
+}
+
+export interface ServerMessage extends ClientMessage {
+  username: string;
 }
