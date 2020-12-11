@@ -14,7 +14,6 @@ type Props = StackScreenProps<RootStackParamList, 'SignInPage'>;
 const SignInPage: React.FC<Props> = ({route, navigation}: Props) => {
   const dispatch = useDispatch();
   const [process, setProcess] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const {token, isLoading, error} = useSelector(getUser);
 
   useEffect(() => {
@@ -31,7 +30,7 @@ const SignInPage: React.FC<Props> = ({route, navigation}: Props) => {
 
   return (
     <>
-      <SignInForm onSignIn={onSignIn} />
+      <SignInForm onSignIn={onSignIn} isLoading={isLoading} error={error} />
     </>
   );
 };
