@@ -28,7 +28,7 @@ function* handleSignUpUser(action: PayloadAction<SignUserInterface>) {
     });
     yield put(signUpUserSuccess(token));
   } catch (error) {
-    yield put(signUpUserFailed(error.toString()));
+    yield put(signUpUserFailed('Username already taken'));
   }
 }
 
@@ -44,7 +44,7 @@ function* handleSignInUser(action: PayloadAction<SignUserInterface>) {
     });
     yield put(signInUserSuccess(token));
   } catch (error) {
-    yield put(signInUserFailed(error.toString()));
+    yield put(signInUserFailed('Incorrect username or password'));
   }
 }
 
