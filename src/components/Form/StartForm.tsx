@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 
-import FormButton from './FormButton';
+import FormButton from '../utils/FormButton';
 import Title from '../utils/TextElement';
 import Logo from '../utils/Logo';
 
@@ -19,14 +19,10 @@ const StartForm: React.FC<StartupFormProps> = ({
       <View style={styles.container}>
         <Logo />
         <View style={styles.form}>
-          <TouchableOpacity
-            style={styles.createButtonContainer}
-            onPress={onSignUp}>
-            <Title text={'CREATE ACCOUNT'} style={styles.createButtonText} />
-          </TouchableOpacity>
+          <FormButton buttonText={'Create Account'} onClick={onSignUp} reverse={true} />
         </View>
         <View style={styles.form}>
-          <FormButton buttonText={'LOGIN'} onClick={onSignIn} />
+          <FormButton buttonText={'Login'} onClick={onSignIn} />
         </View>
       </View>
     </>
@@ -42,26 +38,6 @@ const styles = StyleSheet.create({
   form: {
     marginHorizontal: 25,
     marginVertical: 4,
-  },
-  createButtonContainer: {
-    backgroundColor: '#5CBACB',
-    borderRadius: 10,
-
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-
-    elevation: 4,
-  },
-  createButtonText: {
-    height: 60,
-    textAlignVertical: 'center',
-    textAlign: 'center',
-    color: '#FAFCFC',
   },
 });
 
