@@ -15,8 +15,6 @@ type Props = StackScreenProps<RootStackParamList, 'RoomDetailPage'>;
 
 let clientSocket: SocketIOClient.Socket;
 
-// const socket = io.connect('http://192.168.2.113:9001');
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
   const dispatch = useDispatch();
@@ -30,10 +28,12 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
 
   useEffect(() => {
     if (selectedRoom) {
-      console.log('lets connect');
+      if (clientSocket) {
+        clientSocket.disconnect();
+      }
       clientSocket = io.connect('http://192.168.2.113:9001', {
         query: {
-          roomId: 1,
+          roomId: selectedRoom.id,
           name: 'alice',
         },
       });
@@ -49,6 +49,15 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedRoom]);
+
+  useEffect(
+    () =>
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      navigation.addListener('beforeRemove', (e: unknown) => {
+        clientSocket.disconnect();
+      }),
+    [navigation],
+  );
 
   const handleOnSendText = (text: string) => {
     const clientMessage: ClientMessage = {payload: text};
