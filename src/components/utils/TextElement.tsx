@@ -12,7 +12,7 @@ const Title: React.FC<TextElementProps> = ({
   style,
   size,
 }: TextElementProps) => {
-  var textStyle: {};
+  let textStyle: {};
   switch (size) {
     case 1: {
       textStyle = styles.text1;
