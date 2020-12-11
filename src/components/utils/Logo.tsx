@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
   rect: {
     height: 20,
     backgroundColor: '#5CBACB',
-    marginBottom: 60,
   },
 });
 
