@@ -11,9 +11,9 @@
 
 ## About The Project
 
-<center>
-<img src=".github/images/chat.jpg" alt="Logo" width="50%"/>
-</center>
+<p align="center">
+<img src=".github/images/chat.jpg" alt="Logo" width="25%"/>
+</p>
 
 
 
