@@ -8,6 +8,7 @@ export interface MessageInterface {
   id: number;
   textMessage: string;
   created_at: string;
+  username: string;
 }
 
 // JWT
