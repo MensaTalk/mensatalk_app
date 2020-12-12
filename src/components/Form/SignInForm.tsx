@@ -29,7 +29,6 @@ const SignInForm: React.FC<SignInFormProps> = ({
     };
     onSignIn(user);
   };
-  console.log(error);
   return (
     <>
       <KeyboardAvoidingView style={styles.container}>

@@ -23,6 +23,11 @@ const MessageListItem: React.FC<MessageListItemProp> = ({
     <>
       <View style={style.messageBubbleContainer}>
         <View style={style.messageBubble}>
+          <TextElement
+            text={message.username}
+            style={style.userMessage}
+            size={5}
+          />
           <TextElement text={message.textMessage} style={style.textMessage} />
         </View>
       </View>
@@ -56,6 +61,9 @@ const styles = {
     textMessage: {
       color: '#5CBACB',
     },
+    userMessage: {
+      color: '#5CBACB',
+    },
   }),
   right: StyleSheet.create({
     messageBubbleContainer: {
@@ -81,6 +89,7 @@ const styles = {
       elevation: 4,
     },
     textMessage: {},
+    userMessage: {},
   }),
 };
 export default MessageListItem;

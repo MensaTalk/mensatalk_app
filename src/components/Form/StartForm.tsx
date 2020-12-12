@@ -1,8 +1,7 @@
 import React from 'react';
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import FormButton from '../utils/FormButton';
-import Title from '../utils/TextElement';
 import Logo from '../utils/Logo';
 
 export interface StartupFormProps {

@@ -10,6 +10,7 @@ import {ClientMessage, ServerMessage, MessageInterface} from '../types';
 
 import {RootStackParamList} from '../navigation/RootNavigation';
 import Chat from '../components/Chat/Chat';
+import {getUser} from '../selectors/user';
 
 type Props = StackScreenProps<RootStackParamList, 'RoomDetailPage'>;
 
@@ -18,6 +19,7 @@ let clientSocket: SocketIOClient.Socket;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
   const dispatch = useDispatch();
+  const selectedUser = useSelector(getUser);
 
   const selectedRoom = useSelector(getSelectedRoom);
   const {messages} = useSelector(getAllMessages);
@@ -34,7 +36,7 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
       clientSocket = io.connect('http://mensachat.herokuapp.com', {
         query: {
           roomId: selectedRoom.id,
-          name: 'alice',
+          name: selectedUser.username,
         },
       });
       clientSocket.on('message', (serverMessage: ServerMessage) => {
@@ -43,6 +45,7 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
           id: NaN,
           textMessage: serverMessage.payload,
           created_at: '',
+          username: serverMessage.username,
         };
         dispatch(addMessage(receivedMessage));
       });

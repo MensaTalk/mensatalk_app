@@ -26,6 +26,14 @@ const Title: React.FC<TextElementProps> = ({
       textStyle = styles.text3;
       break;
     }
+    case 4: {
+      textStyle = styles.text4;
+      break;
+    }
+    case 5: {
+      textStyle = styles.text5;
+      break;
+    }
     default: {
       textStyle = styles.text4;
       break;
@@ -68,6 +76,13 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: 16,
+    color: '#FAFCFC',
+  },
+  text5: {
+    fontFamily: 'Roboto',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 12,
     color: '#FAFCFC',
   },
 });
