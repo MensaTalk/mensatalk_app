@@ -31,7 +31,6 @@ const RoomListPage: React.FC<Props> = ({route, navigation}: Props) => {
     navigation.navigate('RoomDetailPage');
   };
 
-  /*
   useEffect(
     () =>
       navigation.addListener('beforeRemove', (e) => {
@@ -39,7 +38,6 @@ const RoomListPage: React.FC<Props> = ({route, navigation}: Props) => {
       }),
     [navigation],
   );
-*/
   return (
     <>
       <RoomList rooms={rooms} onRoomClick={onRoomClick} title={'Tables'} />
