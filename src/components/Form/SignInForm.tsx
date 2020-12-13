@@ -56,6 +56,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
             buttonText={'Login'}
             onClick={validateForm}
             reverse={true}
+            disabled={username.length === 0 || password.length === 0}
           />
         </View>
       </KeyboardAvoidingView>
