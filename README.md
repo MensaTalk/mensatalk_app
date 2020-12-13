@@ -13,7 +13,7 @@
 ## About The Project
 
 <p align="center">
-<img src=".github/images/mensatalk_v1.jpg" alt="Logo" width="30%"/>
+<img src=".github/images/mensatalk_v1.jpg" alt="Logo" width="50%"/>
 </p>
 
 
