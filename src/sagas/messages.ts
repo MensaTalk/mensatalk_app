@@ -1,7 +1,7 @@
 import {call, put, takeEvery} from 'redux-saga/effects';
 import {PayloadAction} from '@reduxjs/toolkit';
 
-import {MessageInterface} from '../types';
+import {MessageInterface, TokenizedPayload} from '../types';
 
 import {request} from '../utils/client';
 import {
@@ -18,10 +18,20 @@ const concatRoomMessagesURL = (roomId: number) => {
   );
 };
 
-function* handleGetMessages({payload}: PayloadAction<number>) {
+function* handleGetMessages({
+  payload,
+}: PayloadAction<TokenizedPayload<number>>) {
   try {
-    const apiMessageUrl = concatRoomMessagesURL(payload);
-    const messages: MessageInterface[] = yield call(request, apiMessageUrl);
+    const apiMessageUrl = concatRoomMessagesURL(payload.payload);
+    const token = payload.token;
+    const authorization = `Bearer ${token}`;
+
+    const messages: MessageInterface[] = yield call(request, apiMessageUrl, {
+      headers: {
+        Authorization: authorization,
+      },
+    });
+
     yield put(getMessagesSuccess(messages));
   } catch (error) {
     yield put(getMessagesFailed(error.toString()));

@@ -25,7 +25,13 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
   const {messages} = useSelector(getAllMessages);
 
   useEffect(() => {
-    selectedRoom && dispatch(getMessagesStart(selectedRoom.id));
+    selectedRoom &&
+      dispatch(
+        getMessagesStart({
+          payload: selectedRoom.id,
+          token: selectedUser.token ? selectedUser.token : '',
+        }),
+      );
   }, [dispatch, selectedRoom]);
 
   useEffect(() => {

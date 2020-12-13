@@ -32,3 +32,8 @@ export interface ClientMessage {
 export interface ServerMessage extends ClientMessage {
   username: string;
 }
+
+export interface TokenizedPayload<T> {
+  token: string;
+  payload: T;
+}

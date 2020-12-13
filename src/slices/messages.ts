@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-import {MessageInterface} from '../types';
+import {MessageInterface, TokenizedPayload} from '../types';
 
 interface MessageState {
   messages: MessageInterface[];
@@ -14,8 +14,11 @@ const messagesSlice = createSlice({
   name: 'message',
   initialState,
   reducers: {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    getMessagesStart(state, {payload}: PayloadAction<number>) {
+    getMessagesStart(
+      state,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      {payload}: PayloadAction<TokenizedPayload<number>>,
+    ) {
       state.isLoading = true;
       state.messages = [];
       state.error = undefined;
