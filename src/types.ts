@@ -16,6 +16,9 @@ export interface SignUserInterface {
   username: string;
   password: string;
 }
+export interface SignUpUserInterface extends SignUserInterface {
+  confirmedPassword: string;
+}
 
 export interface TokenInterface {
   token: string;

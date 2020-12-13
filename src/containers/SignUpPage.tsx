@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {StackScreenProps} from '@react-navigation/stack';
 import {useSelector, useDispatch} from 'react-redux';
 
-import {SignUserInterface} from '../types';
+import {SignUpUserInterface} from '../types';
 import {RootStackParamList} from '../navigation/RootNavigation';
 import {signUpUserStart} from '../slices/user';
 import {getUser} from '../selectors/user';
@@ -23,7 +23,7 @@ const SignUpPage: React.FC<Props> = ({route, navigation}: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [process, token]);
 
-  const onSignUp = (signUser: SignUserInterface) => {
+  const onSignUp = (signUser: SignUpUserInterface) => {
     setProcess(true);
     dispatch(signUpUserStart(signUser));
   };
