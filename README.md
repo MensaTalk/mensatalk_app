@@ -48,3 +48,8 @@ Run on iOS
 ```
 npx react-native run-ios
 ```
+
+### Release
+
+- Build for android see [Publishing to Google Play Store
+](https://reactnative.dev/docs/signed-apk-android)
