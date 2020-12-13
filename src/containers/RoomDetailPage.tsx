@@ -51,7 +51,7 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
           id: NaN,
           textMessage: serverMessage.payload,
           created_at: '',
-          username: serverMessage.username,
+          authorName: serverMessage.username,
         };
         dispatch(addMessage(receivedMessage));
       });

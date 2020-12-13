@@ -24,7 +24,7 @@ const MessageListItem: React.FC<MessageListItemProp> = ({
       <View style={style.messageBubbleContainer}>
         <View style={style.messageBubble}>
           <TextElement
-            text={message.username}
+            text={message.authorName}
             style={style.userMessage}
             size={5}
           />

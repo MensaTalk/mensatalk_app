@@ -29,7 +29,7 @@ const MessageList: React.FC<MessageListProps> = ({
             <>
               <MessageListItem
                 message={item}
-                owner={item.username === selectedUser.username}
+                owner={item.authorName === selectedUser.username}
               />
             </>
           )}
