@@ -38,8 +38,7 @@ const MessageListItem: React.FC<MessageListItemProp> = ({
 const styles = {
   left: StyleSheet.create({
     messageBubbleContainer: {
-      paddingTop: 10,
-      marginRight: 40,
+      marginBottom: 10,
       alignItems: 'flex-start',
     },
     messageBubble: {
@@ -67,14 +66,12 @@ const styles = {
   }),
   right: StyleSheet.create({
     messageBubbleContainer: {
-      paddingTop: 10,
-      marginLeft: 40,
-
+      marginBottom: 10,
       alignItems: 'flex-end',
     },
     messageBubble: {
       backgroundColor: '#5CBACB',
-      borderRadius: 15,
+      borderRadius: 10,
       paddingHorizontal: 10,
       paddingVertical: 10,
 

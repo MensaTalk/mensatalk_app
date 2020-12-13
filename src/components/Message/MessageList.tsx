@@ -18,8 +18,9 @@ const MessageList: React.FC<MessageListProps> = ({
 
   return (
     <>
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView>
         <FlatList<MessageInterface>
+          contentContainerStyle={styles.container}
           ref={(ref) => (flatList = ref)}
           onContentSizeChange={() => flatList.scrollToEnd({animated: true})}
           onLayout={() => flatList.scrollToEnd({animated: true})}
@@ -40,9 +41,7 @@ const MessageList: React.FC<MessageListProps> = ({
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 15,
-  },
+  container: {padding: 20},
 });
 
 export default MessageList;
