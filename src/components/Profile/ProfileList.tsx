@@ -1,6 +1,6 @@
 import React from 'react';
 import {ProfileInterface} from '../../types';
-import {Text} from "react-native";
+import {Text} from 'react-native';
 
 export interface ProfileListProps {
   profiles: ProfileInterface[];
@@ -10,9 +10,11 @@ export interface ProfileListProps {
 const ProfileList: React.FC<ProfileListProps> = ({
   profiles,
 }: ProfileListProps) => {
-  return <><Text>
-    ProfileList with {profiles.length}
-  </Text></>;
+  return (
+    <>
+      <Text>ProfileList with {profiles.length}</Text>
+    </>
+  );
 };
 
 export default ProfileList;

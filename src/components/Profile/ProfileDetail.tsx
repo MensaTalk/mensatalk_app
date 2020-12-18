@@ -1,6 +1,6 @@
 import React from 'react';
 import {ProfileInterface} from '../../types';
-import {Text} from "react-native";
+import {Text} from 'react-native';
 
 export interface ProfileDetailProps {
   profile: ProfileInterface;
@@ -11,9 +11,11 @@ export interface ProfileDetailProps {
 const ProfileDetail: React.FC<ProfileDetailProps> = ({
   profile,
 }: ProfileDetailProps) => {
-  return <><Text>
-    ProfileDetail with {profile.name}
-  </Text></>;
+  return (
+    <>
+      <Text>ProfileDetail with {profile.name}</Text>
+    </>
+  );
 };
 
 export default ProfileDetail;
