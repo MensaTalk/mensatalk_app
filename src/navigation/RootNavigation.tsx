@@ -32,6 +32,7 @@ export const RootNavigation: React.FC<RootNavigationProps> = ({}: RootNavigation
   return (
     <NavigationContainer>
       <RootStack.Navigator
+        initialRouteName={'StartPage'}
         screenOptions={{
           headerShown: false,
         }}>
