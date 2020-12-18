@@ -45,3 +45,6 @@ export interface TokenizedPayload<T> {
   token: string;
   payload: T;
 }
+export interface RoomEventMessage {
+  userIds: number[];
+}

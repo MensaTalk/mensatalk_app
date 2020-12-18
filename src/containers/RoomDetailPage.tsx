@@ -10,13 +10,12 @@ import {
   ClientMessage,
   ServerMessage,
   MessageInterface,
-  RoomInterface,
+  RoomEventMessage,
 } from '../types';
 
 import {RootStackParamList} from '../navigation/RootNavigation';
 import Chat from '../components/Chat/Chat';
 import {getUser} from '../selectors/user';
-import {selectRoom} from '../slices/rooms';
 
 type Props = StackScreenProps<RootStackParamList, 'RoomDetailPage'>;
 
@@ -38,6 +37,7 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
           token: selectedUser.token ? selectedUser.token : '',
         }),
       );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, selectedRoom]);
 
   useEffect(() => {
@@ -49,6 +49,7 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
         query: {
           roomId: selectedRoom.id,
           name: selectedUser.username,
+          token: selectedUser.token,
         },
       });
       clientSocket.on('message', (serverMessage: ServerMessage) => {
@@ -60,6 +61,9 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
           authorName: serverMessage.username,
         };
         dispatch(addMessage(receivedMessage));
+      });
+      clientSocket.on('room_event', (roomEventMessage: RoomEventMessage) => {
+        console.log(`Received: ${roomEventMessage.userIds.length} userIds`);
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
