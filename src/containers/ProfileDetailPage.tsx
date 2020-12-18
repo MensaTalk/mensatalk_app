@@ -10,7 +10,9 @@ type Props = StackScreenProps<RootStackParamList, 'ProfileDetailPage'>;
 const ProfileDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
   return (
     <>
-      <ProfileDetail profile={{userId: 1, name: 'name'}} />
+      <ProfileDetail
+        profile={{id: 1, name: 'name', age: 99, interests: '', status: ''}}
+      />
     </>
   );
 };

@@ -3,6 +3,8 @@ import {ProfileInterface} from '../../types';
 
 export interface ProfileDetailProps {
   profile: ProfileInterface;
+  owner?: boolean;
+  onSave?: (profile: ProfileInterface) => void;
 }
 
 const ProfileDetail: React.FC<ProfileDetailProps> = ({

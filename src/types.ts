@@ -12,8 +12,11 @@ export interface MessageInterface {
 }
 
 export interface ProfileInterface {
-  userId: number;
+  id: number;
   name: string;
+  age: number;
+  interests: string;
+  status: string;
 }
 
 // JWT
