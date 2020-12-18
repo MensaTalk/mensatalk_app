@@ -11,6 +11,11 @@ export interface MessageInterface {
   authorName: string;
 }
 
+export interface ProfileInterface {
+  userId: number;
+  name: string;
+}
+
 // JWT
 export interface SignUserInterface {
   username: string;
