@@ -6,11 +6,17 @@ import io from 'socket.io-client';
 import {getMessagesStart, addMessage} from '../slices/messages';
 import {getSelectedRoom} from '../selectors/rooms';
 import {getAllMessages} from '../selectors/messages';
-import {ClientMessage, ServerMessage, MessageInterface} from '../types';
+import {
+  ClientMessage,
+  ServerMessage,
+  MessageInterface,
+  RoomInterface,
+} from '../types';
 
 import {RootStackParamList} from '../navigation/RootNavigation';
 import Chat from '../components/Chat/Chat';
 import {getUser} from '../selectors/user';
+import {selectRoom} from '../slices/rooms';
 
 type Props = StackScreenProps<RootStackParamList, 'RoomDetailPage'>;
 
@@ -73,11 +79,16 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
     clientSocket.emit('message', clientMessage);
   };
 
+  const handleOnClickHeader = () => {
+    navigation.navigate('ProfileListPage');
+  };
+
   return (
     <>
       <Chat
         messages={messages}
         onSendText={handleOnSendText}
+        onClickHeader={handleOnClickHeader}
         // @ts-ignore
         room={selectedRoom}
       />

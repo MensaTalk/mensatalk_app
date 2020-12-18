@@ -1,5 +1,10 @@
 import React from 'react';
-import {View, KeyboardAvoidingView, StyleSheet} from 'react-native';
+import {
+  View,
+  KeyboardAvoidingView,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import {MessageInterface, RoomInterface} from '../../types';
 import MessageList from '../Message/MessageList';
 import TextHeader from '../Header/Header';
@@ -9,12 +14,20 @@ export interface ChatProps {
   room: RoomInterface;
   messages: MessageInterface[];
   onSendText?: (text: string) => void;
+  onClickHeader?: () => void;
 }
 
-const Chat: React.FC<ChatProps> = ({room, messages, onSendText}: ChatProps) => {
+const Chat: React.FC<ChatProps> = ({
+  room,
+  messages,
+  onSendText,
+  onClickHeader,
+}: ChatProps) => {
   return (
     <>
-      <TextHeader title={room.name} />
+      <TouchableOpacity onPress={onClickHeader}>
+        <TextHeader title={room.name} />
+      </TouchableOpacity>
       <KeyboardAvoidingView style={styles.container}>
         <View style={styles.messageContainer}>
           <MessageList messages={messages} />
