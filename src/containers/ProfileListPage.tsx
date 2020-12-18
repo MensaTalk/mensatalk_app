@@ -8,9 +8,13 @@ type Props = StackScreenProps<RootStackParamList, 'ProfileListPage'>;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ProfileListPage: React.FC<Props> = ({route, navigation}: Props) => {
+  const handleOnClick = (profileId: number) => {
+    navigation.navigate('ProfileDetailPage');
+  };
+
   return (
     <>
-      <ProfileList profiles={[]} />
+      <ProfileList profiles={[]} onClick={handleOnClick} />
     </>
   );
 };
