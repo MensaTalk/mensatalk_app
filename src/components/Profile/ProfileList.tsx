@@ -1,5 +1,5 @@
 import React from 'react';
-import {ProfileInterface, RoomInterface} from '../../types';
+import {ProfileInterface} from '../../types';
 import {Button, FlatList, SafeAreaView, StyleSheet, View} from 'react-native';
 import TextHeader from '../Header/Header';
 
@@ -17,11 +17,11 @@ const ProfileList: React.FC<ProfileListProps> = ({
       <View style={styles.container}>
         <TextHeader title={'213123'} />
         <SafeAreaView style={styles.container}>
-          <FlatList<RoomInterface>
+          <FlatList<ProfileInterface>
             data={profiles}
             renderItem={({item}) => (
               <Button
-                title={item.name}
+                title={item.username}
                 onPress={() => (onClick ? onClick(item.id) : undefined)}
               />
             )}
