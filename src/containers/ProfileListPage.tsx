@@ -7,7 +7,7 @@ import {getUserIds, getSelectedRoom} from '../selectors/rooms';
 import {RootStackParamList} from '../navigation/RootNavigation';
 import ProfileList from '../components/Profile/ProfileList';
 import {getUser} from '../selectors/user';
-import {selectRoomProfiles} from '../selectors/profiles';
+import {selectRoomProfiles} from '../selectors/rooms';
 import {getProfileStart, selectProfile} from '../slices/profiles';
 
 type Props = StackScreenProps<RootStackParamList, 'ProfileListPage'>;
@@ -34,7 +34,6 @@ const ProfileListPage: React.FC<Props> = ({route, navigation}: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, selectedRoom]);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleOnClick = (profileId: number) => {
     dispatch(selectProfile(profileId));
     navigation.navigate('ProfileDetailPage');
