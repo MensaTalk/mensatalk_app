@@ -8,7 +8,7 @@ import {RootStackParamList} from '../navigation/RootNavigation';
 import ProfileList from '../components/Profile/ProfileList';
 import {getUser} from '../selectors/user';
 import {selectRoomProfiles} from '../selectors/profiles';
-import {getProfileStart} from '../slices/profiles';
+import {getProfileStart, selectProfile} from '../slices/profiles';
 
 type Props = StackScreenProps<RootStackParamList, 'ProfileListPage'>;
 
@@ -36,6 +36,7 @@ const ProfileListPage: React.FC<Props> = ({route, navigation}: Props) => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleOnClick = (profileId: number) => {
+    dispatch(selectProfile(profileId));
     navigation.navigate('ProfileDetailPage');
   };
 
