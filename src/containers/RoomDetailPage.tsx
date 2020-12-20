@@ -5,7 +5,11 @@ import io from 'socket.io-client';
 
 import {getMessagesStart, addMessage} from '../slices/messages';
 import {setUserIds} from '../slices/rooms';
-import {getSelectedRoom} from '../selectors/rooms';
+import {
+  getSelectedRoom,
+  getUserIds,
+  selectRoomProfiles,
+} from '../selectors/rooms';
 import {getAllMessages} from '../selectors/messages';
 import {
   ClientMessage,
@@ -17,6 +21,7 @@ import {
 import {RootStackParamList} from '../navigation/RootNavigation';
 import Chat from '../components/Chat/Chat';
 import {getUser} from '../selectors/user';
+import {getProfileStart} from '../slices/profiles';
 
 type Props = StackScreenProps<RootStackParamList, 'RoomDetailPage'>;
 
@@ -26,6 +31,9 @@ let clientSocket: SocketIOClient.Socket;
 const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
   const dispatch = useDispatch();
   const selectedUser = useSelector(getUser);
+  const roomProfiles = useSelector(selectRoomProfiles);
+  const userIds = useSelector(getUserIds);
+  const user = useSelector(getUser);
 
   const selectedRoom = useSelector(getSelectedRoom);
   const {messages} = useSelector(getAllMessages);
@@ -71,6 +79,20 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedRoom]);
 
+  useEffect(() => {
+    if (selectedRoom && user) {
+      userIds.forEach((userId) =>
+        dispatch(
+          getProfileStart({
+            token: user.token ? user.token : '',
+            payload: userId,
+          }),
+        ),
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userIds]);
+
   useEffect(
     () =>
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -95,6 +117,7 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
         messages={messages}
         onSendText={handleOnSendText}
         onClickHeader={handleOnClickHeader}
+        profiles={roomProfiles}
         // @ts-ignore
         room={selectedRoom}
       />

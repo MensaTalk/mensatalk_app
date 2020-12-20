@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, TouchableOpacity, TextInput, StyleSheet} from 'react-native';
 import TextElement from '../utils/TextElement';
+import Hairline from '../Header/Hairline';
 export interface ChatInputProps {
   onSendText?: (text: string) => void;
 }
@@ -15,47 +16,83 @@ const ChatInput: React.FC<ChatInputProps> = ({onSendText}: ChatInputProps) => {
     setInputText('');
   };
 
+  const verifyText = (text: string) => {
+    // true if message is valid
+    return text.trim().length > 0;
+  };
+
   return (
     <>
-      <TouchableOpacity style={styles.submitButton} onPress={handleOnPress}>
-        <TextElement style={styles.centerText} text={'SEND'} />
-      </TouchableOpacity>
-      <View style={styles.chatInputContainer}>
-        <TextInput
-          style={styles.chatInput}
-          onChangeText={(text) => setInputText(text)}
-          value={inputText}
-          editable={true}
-          multiline={true}
-        />
+      <Hairline />
+      <View style={styles.container}>
+        <View style={{flex: 1}}>
+          <TextInput
+            style={styles.chatInput}
+            onChangeText={(text) => setInputText(text)}
+            value={inputText}
+            editable={true}
+            multiline={true}
+            placeholder={'Please type your message here...'}
+          />
+        </View>
+        <TouchableOpacity
+          style={[
+            verifyText(inputText)
+              ? styles.submitButton
+              : styles.disabledSubmitButton,
+          ]}
+          onPress={handleOnPress}
+          disabled={!verifyText(inputText)}>
+          <TextElement style={{fontSize: 16}} text={'SEND'} />
+        </TouchableOpacity>
       </View>
+      <Hairline />
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  submitButton: {
-    backgroundColor: '#5CBACB',
+  container: {
+    flexDirection: 'row',
+  },
+  disabledSubmitButton: {
+    marginLeft: 'auto',
+
     padding: 10,
+    marginRight: 10,
+    marginVertical: 10,
+
+    borderRadius: 15,
+
+    backgroundColor: '#a3a1a1',
+    justifyContent: 'center',
   },
-  centerText: {
-    textAlign: 'center',
-  },
-  chatInputContainer: {
-    backgroundColor: '#373F51',
+  submitButton: {
+    alignItems: 'flex-end',
+
+    padding: 10,
+    marginRight: 5,
+    marginVertical: 10,
+    borderRadius: 15,
+    backgroundColor: '#5CBACB',
+    justifyContent: 'center',
   },
   chatInput: {
-    backgroundColor: '#F5F5F5',
-    borderRadius: 10,
-
+    marginLeft: 10,
+    marginRight: 5,
     marginVertical: 10,
-    marginHorizontal: 10,
+
+    borderRadius: 15,
+    borderWidth: 2,
+    borderColor: '#d4d8dd',
+
+    padding: 10,
 
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: 16,
-    color: '#373F51',
+    color: 'black',
   },
 });
 
