@@ -7,9 +7,14 @@ interface RoomState {
   isLoading: boolean;
   error?: string;
   selectedRoomId?: number;
+  userIds: number[];
 }
 
-export const initialState: RoomState = {rooms: [], isLoading: false};
+export const initialState: RoomState = {
+  rooms: [],
+  isLoading: false,
+  userIds: [],
+};
 
 const roomsSlice = createSlice({
   name: 'room',
@@ -36,6 +41,9 @@ const roomsSlice = createSlice({
         state.error = 'Room not found';
       }
     },
+    setUserIds(state, {payload}: PayloadAction<number[]>) {
+      state.userIds = payload;
+    },
   },
 });
 
@@ -44,6 +52,7 @@ export const {
   getRoomsSuccess,
   getRoomsFailed,
   selectRoom,
+  setUserIds,
 } = roomsSlice.actions;
 
 export default roomsSlice.reducer;
