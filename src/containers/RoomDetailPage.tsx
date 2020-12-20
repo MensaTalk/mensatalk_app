@@ -4,6 +4,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 import io from 'socket.io-client';
 
 import {getMessagesStart, addMessage} from '../slices/messages';
+import {setUserIds} from '../slices/rooms';
 import {getSelectedRoom} from '../selectors/rooms';
 import {getAllMessages} from '../selectors/messages';
 import {
@@ -64,6 +65,7 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
       });
       clientSocket.on('room_event', (roomEventMessage: RoomEventMessage) => {
         console.log(`Received: ${roomEventMessage.userIds.length} userIds`);
+        dispatch(setUserIds(roomEventMessage.userIds));
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
