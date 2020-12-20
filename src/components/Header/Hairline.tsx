@@ -1,19 +1,21 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
-export interface HairlineProps {}
+export interface HairlineProps {
+  style?: any;
+}
 
-const Hairline: React.FC<HairlineProps> = ({}: HairlineProps) => {
+const Hairline: React.FC<HairlineProps> = ({style}: HairlineProps) => {
   return (
     <>
-      <View style={styles.hairline} />
+      <View style={[styles.hairline, style]} />
     </>
   );
 };
 
 const styles = StyleSheet.create({
   hairline: {
-    borderBottomColor: '#5CBACB',
+    borderBottomColor: '#E5E5EA',
     borderBottomWidth: 1.5,
   },
 });

@@ -19,7 +19,7 @@ const StartForm: React.FC<StartupFormProps> = ({
         <Logo />
         <View style={styles.form}>
           <FormButton
-            buttonText={'Create Account'}
+            buttonText={'Create account'}
             onClick={onSignUp}
             reverse={true}
           />

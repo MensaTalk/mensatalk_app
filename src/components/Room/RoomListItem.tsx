@@ -30,7 +30,7 @@ const RoomListItem: React.FC<RoomListItemProp> = ({
 const styles = StyleSheet.create({
   item: {
     paddingTop: 12,
-    paddingLeft: 20,
+    paddingLeft: 25,
   },
   contentPadding: {
     paddingVertical: 7, // if subtitle is used, then move this to subtitle
