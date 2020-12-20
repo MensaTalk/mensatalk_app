@@ -13,3 +13,8 @@ export const selectRoomProfiles = createSelector(
       roomState.userIds.find((id) => id === profile.id),
     ),
 );
+
+export const selectSelectedProfile = createSelector(
+  [profilesDomain],
+  (profileState) => profileState.selectedProfile,
+);
