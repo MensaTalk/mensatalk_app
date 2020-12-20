@@ -1,6 +1,9 @@
-name: Build Android APK from Master branch
+name: Build Android APK main branch and pull request
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 jobs:
