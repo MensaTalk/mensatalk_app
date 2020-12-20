@@ -8,37 +8,65 @@ export interface MessageListItemProp {
   owner: boolean;
 }
 
+const timeString = (hour: number, minute: number) => {
+  return `${hour}:${minute}`;
+};
+
 const MessageListItem: React.FC<MessageListItemProp> = ({
   message,
   owner,
 }: MessageListItemProp) => {
-  var style;
+  const dateTime = message.created_at
+    ? new Date(message.created_at)
+    : new Date(Date.now());
   if (owner) {
-    style = styles.right;
-  } else {
-    style = styles.left;
-  }
-
-  return (
-    <>
-      <View style={style.messageBubbleContainer}>
-        <View style={style.messageBubble}>
+    return (
+      <>
+        <View style={styles.right.messageBubbleContainer}>
+          <View style={styles.right.messageBubble}>
+            <TextElement
+              text={message.textMessage}
+              style={styles.right.textMessage}
+            />
+          </View>
           <TextElement
-            text={message.authorName}
-            style={style.userMessage}
+            text={timeString(dateTime.getHours(), dateTime.getMinutes())}
+            style={styles.right.timeMessage}
             size={5}
           />
-          <TextElement text={message.textMessage} style={style.textMessage} />
         </View>
-      </View>
-    </>
-  );
+      </>
+    );
+  } else {
+    return (
+      <>
+        <View style={styles.left.messageBubbleContainer}>
+          <View style={styles.left.messageBubble}>
+            <TextElement
+              text={message.authorName}
+              style={styles.left.userMessage}
+              size={5}
+            />
+            <TextElement
+              text={message.textMessage}
+              style={styles.left.textMessage}
+            />
+          </View>
+          <TextElement
+            text={timeString(dateTime.getHours(), dateTime.getMinutes())}
+            style={styles.left.timeMessage}
+            size={5}
+          />
+        </View>
+      </>
+    );
+  }
 };
 
 const styles = {
   left: StyleSheet.create({
     messageBubbleContainer: {
-      marginBottom: 10,
+      marginBottom: 5,
       alignItems: 'flex-start',
     },
     messageBubble: {
@@ -58,15 +86,18 @@ const styles = {
       elevation: 4,
     },
     textMessage: {
-      color: '#5CBACB',
+      color: '#000000',
     },
     userMessage: {
       color: '#5CBACB',
     },
+    timeMessage: {
+      color: '#989a9a',
+    },
   }),
   right: StyleSheet.create({
     messageBubbleContainer: {
-      marginBottom: 10,
+      marginBottom: 5,
       alignItems: 'flex-end',
     },
     messageBubble: {
@@ -87,6 +118,9 @@ const styles = {
     },
     textMessage: {},
     userMessage: {},
+    timeMessage: {
+      color: '#989a9a',
+    },
   }),
 };
 export default MessageListItem;
