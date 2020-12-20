@@ -25,6 +25,7 @@ const ChatInput: React.FC<ChatInputProps> = ({onSendText}: ChatInputProps) => {
     <>
       <Hairline />
       <View style={styles.container}>
+        {/* eslint-disable-next-line react-native/no-inline-styles */}
         <View style={{flex: 1}}>
           <TextInput
             style={styles.chatInput}
@@ -43,6 +44,7 @@ const ChatInput: React.FC<ChatInputProps> = ({onSendText}: ChatInputProps) => {
           ]}
           onPress={handleOnPress}
           disabled={!verifyText(inputText)}>
+          {/* eslint-disable-next-line react-native/no-inline-styles */}
           <TextElement style={{fontSize: 16}} text={'SEND'} />
         </TouchableOpacity>
       </View>
