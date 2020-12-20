@@ -13,7 +13,7 @@ const ProfileDetail: React.FC<ProfileDetailProps> = ({
 }: ProfileDetailProps) => {
   return (
     <>
-      <Text>ProfileDetail with {profile.name}</Text>
+      <Text>ProfileDetail with {profile.username}</Text>
     </>
   );
 };
