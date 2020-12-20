@@ -13,3 +13,8 @@ export const getAllRooms = createSelector(
 export const getSelectedRoom = createSelector([roomsDomain], (roomsState) =>
   roomsState.rooms.find((room) => room.id === roomsState.selectedRoomId),
 );
+
+export const getUserIds = createSelector(
+  [roomsDomain],
+  (roomState) => roomState.userIds,
+);
