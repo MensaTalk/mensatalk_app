@@ -13,7 +13,7 @@ export interface MessageInterface {
 
 export interface ProfileInterface {
   id: number;
-  name: string;
+  username: string;
   age: number;
   interests: string;
   status: string;
