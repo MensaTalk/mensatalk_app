@@ -15,7 +15,7 @@ const ProfileList: React.FC<ProfileListProps> = ({
   return (
     <>
       <View style={styles.container}>
-        <TextHeader title={'213123'} />
+        <TextHeader title={`Users (${profiles.length})`} />
         <SafeAreaView style={styles.container}>
           <FlatList<ProfileInterface>
             data={profiles}
