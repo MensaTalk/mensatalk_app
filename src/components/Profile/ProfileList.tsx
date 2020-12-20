@@ -1,29 +1,34 @@
 import React from 'react';
 import {ProfileInterface} from '../../types';
-import {Button, FlatList, SafeAreaView, StyleSheet, View} from 'react-native';
+import {FlatList, SafeAreaView, StyleSheet, View} from 'react-native';
 import TextHeader from '../Header/Header';
+import ProfileListItem from './ProfileListItem';
 
 export interface ProfileListProps {
   profiles: ProfileInterface[];
   onClick?: (profileId: number) => void;
+  headerName: string;
 }
 
 const ProfileList: React.FC<ProfileListProps> = ({
   profiles,
   onClick,
+  headerName,
 }: ProfileListProps) => {
   return (
     <>
       <View style={styles.container}>
-        <TextHeader title={`Users (${profiles.length})`} />
+        <TextHeader
+          title={`${headerName}`}
+          subtitle={`${profiles.length} user`}
+        />
         <SafeAreaView style={styles.container}>
           <FlatList<ProfileInterface>
             data={profiles}
             renderItem={({item}) => (
-              <Button
-                title={item.username}
-                onPress={() => (onClick ? onClick(item.id) : undefined)}
-              />
+              <>
+                <ProfileListItem profile={item} onClick={onClick} />
+              </>
             )}
             keyExtractor={(item) => Number(item.id).toString()}
           />

@@ -41,7 +41,11 @@ const ProfileListPage: React.FC<Props> = ({route, navigation}: Props) => {
 
   return (
     <>
-      <ProfileList profiles={roomProfiles} onClick={handleOnClick} />
+      <ProfileList
+        headerName={selectedRoom ? selectedRoom.name : ''}
+        profiles={roomProfiles}
+        onClick={handleOnClick}
+      />
     </>
   );
 };
