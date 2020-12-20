@@ -6,6 +6,7 @@ interface ProfileSate {
   profiles: Map<number, ProfileInterface>;
   isLoading: boolean;
   error?: string;
+  selectedProfile?: ProfileInterface;
 }
 
 export const initialState: ProfileSate = {
@@ -29,6 +30,12 @@ const profilesSlice = createSlice({
       state.error = payload;
       state.isLoading = false;
     },
+    selectProfile(state, {payload}: PayloadAction<number>) {
+      const profile = state.profiles.get(payload);
+      if (profile) {
+        state.selectedProfile = profile;
+      }
+    },
   },
 });
 
@@ -36,6 +43,7 @@ export const {
   getProfileStart,
   getProfileSuccess,
   getProfileFailed,
+  selectProfile,
 } = profilesSlice.actions;
 
 export default profilesSlice.reducer;
