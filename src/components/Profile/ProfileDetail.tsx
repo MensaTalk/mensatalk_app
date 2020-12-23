@@ -29,7 +29,7 @@ const ProfileDetail: React.FC<ProfileDetailProps> = ({
             size={1}
           />
         </View>
-        {profile.interests && (
+        {profile.interests ? (
           <View style={styles.tagContainer}>
             <TextElement
               style={styles.textTag}
@@ -37,7 +37,7 @@ const ProfileDetail: React.FC<ProfileDetailProps> = ({
               size={3}
             />
           </View>
-        )}
+        ) : undefined}
         {/* eslint-disable-next-line react-native/no-inline-styles */}
         <View style={{marginTop: 15}}>
           <Hairline style={styles.hairline} />

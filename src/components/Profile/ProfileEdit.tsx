@@ -91,57 +91,56 @@ const ProfileEdit: React.FC<ProfileEditProps> = ({
               />
             </View>
           </View>
-          {interests ||
-            (isEditing && (
-              <View style={styles.tagContainer}>
-                {/* eslint-disable-next-line react-native/no-inline-styles */}
-                <View style={{flexDirection: 'column'}}>
-                  <TextElement
-                    text={'Interests:'}
-                    size={5}
-                    style={styles.textDescription}
-                  />
-                  <TextInput
-                    placeholder={'Please type your interests here...'}
-                    onChangeText={(text) => setInterests(text)}
-                    value={interests}
-                    style={[
-                      textStyles.text3,
-                      styles.textTag,
-                      isEditing ? styles.textIsEditing : undefined,
-                    ]}
-                    editable={isEditing}
-                  />
-                </View>
+
+          {interests || isEditing ? (
+            <View style={styles.tagContainer}>
+              {/* eslint-disable-next-line react-native/no-inline-styles */}
+              <View style={{flexDirection: 'column'}}>
+                <TextElement
+                  text={'Interests:'}
+                  size={5}
+                  style={styles.textDescription}
+                />
+                <TextInput
+                  onChangeText={(text) => setInterests(text)}
+                  value={interests}
+                  style={[
+                    textStyles.text3,
+                    styles.textTag,
+                    isEditing ? styles.textIsEditing : undefined,
+                  ]}
+                  editable={isEditing}
+                />
               </View>
-            ))}
-          {status ||
-            (isEditing && (
-              // eslint-disable-next-line react-native/no-inline-styles
-              <View style={{marginTop: 15}}>
-                <Hairline style={styles.hairline} />
-                {/* eslint-disable-next-line react-native/no-inline-styles */}
-                <View style={{flexDirection: 'column'}}>
-                  <TextElement
-                    text={'Status:'}
-                    size={5}
-                    style={styles.textDescription}
-                  />
-                  <TextInput
-                    placeholder={'Please type your status here...'}
-                    onChangeText={(text) => setStatus(text)}
-                    value={status}
-                    multiline={true}
-                    style={[
-                      textStyles.text3,
-                      styles.textNormal,
-                      isEditing ? styles.textIsEditing : undefined,
-                    ]}
-                    editable={isEditing}
-                  />
-                </View>
+            </View>
+          ) : undefined}
+
+          {status || isEditing ? (
+            // eslint-disable-next-line react-native/no-inline-styles
+            <View style={{marginTop: 15}}>
+              <Hairline style={styles.hairline} />
+              {/* eslint-disable-next-line react-native/no-inline-styles */}
+              <View style={{flexDirection: 'column'}}>
+                <TextElement
+                  text={'Status:'}
+                  size={5}
+                  style={styles.textDescription}
+                />
+                <TextInput
+                  placeholder={'Please type your status here...'}
+                  onChangeText={(text) => setStatus(text)}
+                  value={status}
+                  multiline={true}
+                  style={[
+                    textStyles.text3,
+                    styles.textNormal,
+                    isEditing ? styles.textIsEditing : undefined,
+                  ]}
+                  editable={isEditing}
+                />
               </View>
-            ))}
+            </View>
+          ) : undefined}
         </View>
       </ScrollView>
       <Button
