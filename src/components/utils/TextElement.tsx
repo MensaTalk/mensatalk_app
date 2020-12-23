@@ -5,12 +5,14 @@ export interface TextElementProps {
   text: string;
   size?: number;
   style?: any;
+  numberOfLines?: number;
 }
 
 const Title: React.FC<TextElementProps> = ({
   text,
   style,
   size,
+  numberOfLines,
 }: TextElementProps) => {
   let textStyle: {};
   switch (size) {
@@ -41,7 +43,12 @@ const Title: React.FC<TextElementProps> = ({
   }
   return (
     <>
-      <Text style={[textStyle, style]}>{text}</Text>
+      <Text
+        numberOfLines={numberOfLines}
+        ellipsizeMode={'tail'}
+        style={[textStyle, style]}>
+        {text}
+      </Text>
     </>
   );
 };

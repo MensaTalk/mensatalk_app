@@ -18,7 +18,7 @@ const TextHeader: React.FC<TextHeaderProps> = ({
         <View style={styles.container}>
           <View style={styles.textContainer}>
             <TextElement text={title} size={1} />
-            <TextElement text={subtitle} size={2} />
+            <TextElement text={subtitle} size={2} numberOfLines={1} />
           </View>
           <Hairline style={styles.hairlineStyle} />
         </View>
@@ -40,7 +40,12 @@ const TextHeader: React.FC<TextHeaderProps> = ({
 
 const styles = StyleSheet.create({
   container: {},
-  textContainer: {marginTop: 22, marginLeft: 20, marginBottom: 10},
+  textContainer: {
+    marginTop: 22,
+    marginLeft: 20,
+    marginBottom: 10,
+    marginRight: 50,
+  },
   hairlineStyle: {
     borderBottomWidth: 4,
   },
