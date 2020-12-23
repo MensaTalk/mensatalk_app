@@ -1,7 +1,8 @@
 import React from 'react';
 import {ProfileInterface} from '../../types';
-import {Text, View, Image, StyleSheet, Dimensions} from 'react-native';
+import {View, Image, StyleSheet, Dimensions} from 'react-native';
 import TextElement from '../utils/TextElement';
+import Hairline from '../Header/Hairline';
 
 export interface ProfileDetailProps {
   profile: ProfileInterface;
@@ -14,17 +15,54 @@ const ProfileDetail: React.FC<ProfileDetailProps> = ({
 }: ProfileDetailProps) => {
   return (
     <>
-      <View style={styles.container}>
-        <Image
-          style={styles.userImage}
-          source={require('./../../assets/images/gradient.png')}
-        />
-        <TextElement text={profile.username} size={2} />
+      <Image
+        resizeMode="cover"
+        style={styles.userImage}
+        source={require('./../../assets/images/gradient.png')}
+      />
+      <View style={styles.profileContainer}>
+        <View style={styles.profileContainer}>
+          <View style={styles.profileHeaderContainer}>
+            <TextElement style={styles.text} text={profile.username} size={1} />
+            <TextElement
+              style={styles.textNormal}
+              text={profile.age + '0'}
+              size={1}
+            />
+          </View>
+          <View style={styles.tagContainer}>
+            <TextElement
+              style={styles.textTag}
+              text={profile.interests + '0'}
+              size={3}
+            />
+            <TextElement
+              style={styles.textTag}
+              text={profile.interests + '0'}
+              size={3}
+            />
+            <TextElement
+              style={styles.textTag}
+              text={profile.interests + '0'}
+              size={3}
+            />
+            <TextElement
+              style={styles.textTag}
+              text={profile.interests + '0'}
+              size={3}
+            />
+          </View>
+          {/* eslint-disable-next-line react-native/no-inline-styles */}
+          <View style={{marginTop: 15}}>
+            <Hairline style={styles.hairline} />
 
-        <Text>ProfileDetail with {profile.username}</Text>
-        <Text>ProfileDetail with {profile.status}</Text>
-        <Text>ProfileDetail with {profile.age}</Text>
-        <Text>ProfileDetail with {profile.interests}</Text>
+            <TextElement
+              style={styles.textNormal}
+              text={profile.status + ' ist mein Motto'}
+              size={3}
+            />
+          </View>
+        </View>
       </View>
     </>
   );
@@ -35,9 +73,44 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width,
     width: Dimensions.get('window').width,
   },
-  container: {
-    alignItems: 'center',
+  profileContainer: {
+    marginTop: 10,
+    marginHorizontal: 10,
+  },
+  profileHeaderContainer: {
+    flexDirection: 'row',
+  },
+  text: {
+    color: 'black',
+    marginLeft: 5,
+  },
+  textNormal: {
+    fontWeight: 'normal',
+    color: 'black',
+    marginLeft: 5,
+  },
+  tagContainer: {
+    marginTop: 5,
+
+    flexDirection: 'row',
+    textAlignVertical: 'center',
+    textAlign: 'center',
     alignContent: 'center',
+  },
+  textTag: {
+    paddingHorizontal: 8,
+    paddingVertical: 5,
+    marginRight: 6,
+    borderRadius: 15,
+    borderWidth: 2,
+    borderColor: '#5CBACB',
+    color: '#5CBACB',
+
+    textAlignVertical: 'center',
+    textAlign: 'center',
+  },
+  hairline: {
+    marginBottom: 15,
   },
 });
 
