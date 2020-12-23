@@ -32,6 +32,11 @@ export interface TokenInterface {
   token: string;
 }
 
+export interface VerifyUserTokenInterface {
+  jwtToken: string;
+  userName: string;
+}
+
 // Socket IO
 export interface ClientMessage {
   payload: string;
