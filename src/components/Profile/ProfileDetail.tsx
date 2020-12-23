@@ -21,47 +21,45 @@ const ProfileDetail: React.FC<ProfileDetailProps> = ({
         source={require('./../../assets/images/gradient.png')}
       />
       <View style={styles.profileContainer}>
-        <View style={styles.profileContainer}>
-          <View style={styles.profileHeaderContainer}>
-            <TextElement style={styles.text} text={profile.username} size={1} />
-            <TextElement
-              style={styles.textNormal}
-              text={profile.age + '0'}
-              size={1}
-            />
-          </View>
-          <View style={styles.tagContainer}>
-            <TextElement
-              style={styles.textTag}
-              text={profile.interests + '0'}
-              size={3}
-            />
-            <TextElement
-              style={styles.textTag}
-              text={profile.interests + '0'}
-              size={3}
-            />
-            <TextElement
-              style={styles.textTag}
-              text={profile.interests + '0'}
-              size={3}
-            />
-            <TextElement
-              style={styles.textTag}
-              text={profile.interests + '0'}
-              size={3}
-            />
-          </View>
-          {/* eslint-disable-next-line react-native/no-inline-styles */}
-          <View style={{marginTop: 15}}>
-            <Hairline style={styles.hairline} />
+        <View style={styles.profileHeaderContainer}>
+          <TextElement style={styles.text} text={profile.username} size={1} />
+          <TextElement
+            style={styles.textNormal}
+            text={profile.age + '0'}
+            size={1}
+          />
+        </View>
+        <View style={styles.tagContainer}>
+          <TextElement
+            style={styles.textTag}
+            text={profile.interests + '12312'}
+            size={3}
+          />
+          <TextElement
+            style={styles.textTag}
+            text={profile.interests + '332423'}
+            size={3}
+          />
+          <TextElement
+            style={styles.textTag}
+            text={profile.interests + '123123'}
+            size={3}
+          />
+          <TextElement
+            style={styles.textTag}
+            text={profile.interests + '3423324'}
+            size={3}
+          />
+        </View>
+        {/* eslint-disable-next-line react-native/no-inline-styles */}
+        <View style={{marginTop: 15}}>
+          <Hairline style={styles.hairline} />
 
-            <TextElement
-              style={styles.textNormal}
-              text={profile.status + ' ist mein Motto'}
-              size={3}
-            />
-          </View>
+          <TextElement
+            style={styles.textNormal}
+            text={profile.status + ' ist mein Motto'}
+            size={3}
+          />
         </View>
       </View>
     </>
@@ -90,17 +88,16 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   tagContainer: {
-    marginTop: 5,
-
+    marginTop: 8,
     flexDirection: 'row',
-    textAlignVertical: 'center',
-    textAlign: 'center',
-    alignContent: 'center',
+    flexWrap: 'wrap',
   },
   textTag: {
     paddingHorizontal: 8,
     paddingVertical: 5,
+
     marginRight: 6,
+    marginBottom: 6,
     borderRadius: 15,
     borderWidth: 2,
     borderColor: '#5CBACB',
