@@ -21,12 +21,29 @@ const profilesSlice = createSlice({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getProfileStart(state, {payload}: PayloadAction<TokenizedPayload<number>>) {
       state.isLoading = true;
+      state.error = undefined;
     },
     getProfileSuccess(state, {payload}: PayloadAction<ProfileInterface>) {
       state.profiles.set(payload.id, payload);
       state.isLoading = false;
     },
     getProfileFailed(state, {payload}: PayloadAction<string>) {
+      state.error = payload;
+      state.isLoading = false;
+    },
+    updateProfileStart(
+      state,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      {payload}: PayloadAction<TokenizedPayload<ProfileInterface>>,
+    ) {
+      state.isLoading = true;
+      state.error = undefined;
+    },
+    updateProfileSuccess(state, {payload}: PayloadAction<ProfileInterface>) {
+      state.profiles.set(payload.id, payload);
+      state.isLoading = false;
+    },
+    updateProfileFailed(state, {payload}: PayloadAction<string>) {
       state.error = payload;
       state.isLoading = false;
     },
@@ -44,6 +61,9 @@ export const {
   getProfileSuccess,
   getProfileFailed,
   selectProfile,
+  updateProfileStart,
+  updateProfileSuccess,
+  updateProfileFailed,
 } = profilesSlice.actions;
 
 export default profilesSlice.reducer;
