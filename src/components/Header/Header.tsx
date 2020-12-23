@@ -23,11 +23,11 @@ const TextHeader: React.FC<TextHeaderProps> = ({
       <View style={styles.container}>
         <View style={styles.textContainer}>
           <TextElement text={title} size={1} />
-          {subtitle ? (
+          {subtitle && (
             <TextElement text={subtitle} size={2} numberOfLines={1} />
-          ) : null}
+          )}
         </View>
-        {showImage ? (
+        {showImage && (
           <TouchableOpacity onPress={onImageClick}>
             <Image
               resizeMode="cover"
@@ -39,7 +39,7 @@ const TextHeader: React.FC<TextHeaderProps> = ({
               }
             />
           </TouchableOpacity>
-        ) : null}
+        )}
       </View>
       <Hairline style={styles.hairlineStyle} />
     </>

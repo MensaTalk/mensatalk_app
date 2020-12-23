@@ -25,39 +25,26 @@ const ProfileDetail: React.FC<ProfileDetailProps> = ({
           <TextElement style={styles.text} text={profile.username} size={1} />
           <TextElement
             style={styles.textNormal}
-            text={profile.age + '0'}
+            text={' ' + profile.age}
             size={1}
           />
         </View>
-        <View style={styles.tagContainer}>
-          <TextElement
-            style={styles.textTag}
-            text={profile.interests + '12312'}
-            size={3}
-          />
-          <TextElement
-            style={styles.textTag}
-            text={profile.interests + '332423'}
-            size={3}
-          />
-          <TextElement
-            style={styles.textTag}
-            text={profile.interests + '123123'}
-            size={3}
-          />
-          <TextElement
-            style={styles.textTag}
-            text={profile.interests + '3423324'}
-            size={3}
-          />
-        </View>
+        {profile.interests && (
+          <View style={styles.tagContainer}>
+            <TextElement
+              style={styles.textTag}
+              text={profile.interests}
+              size={3}
+            />
+          </View>
+        )}
         {/* eslint-disable-next-line react-native/no-inline-styles */}
         <View style={{marginTop: 15}}>
           <Hairline style={styles.hairline} />
 
           <TextElement
             style={styles.textNormal}
-            text={profile.status + ' ist mein Motto'}
+            text={profile.status}
             size={3}
           />
         </View>
@@ -85,7 +72,6 @@ const styles = StyleSheet.create({
   textNormal: {
     fontWeight: 'normal',
     color: 'black',
-    marginLeft: 5,
   },
   tagContainer: {
     marginTop: 8,
