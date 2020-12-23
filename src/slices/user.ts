@@ -1,11 +1,17 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-import {SignUserInterface, TokenInterface} from '../types';
+import {
+  SignUserInterface,
+  TokenInterface,
+  TokenizedPayload,
+  VerifyUserTokenInterface,
+} from '../types';
 export interface UserState {
   isLoading: boolean;
   error?: string;
   token?: string;
   username?: string;
+  userId?: number;
 }
 
 export const initialState: UserState = {
@@ -29,8 +35,8 @@ const userSlice = createSlice({
     signUpUserFailed(state, {payload}: PayloadAction<string>) {
       state.token = undefined;
       state.error = payload;
-      state.isLoading = false;
       state.username = undefined;
+      state.isLoading = false;
     },
     signInUserStart(state, {payload}: PayloadAction<SignUserInterface>) {
       state.isLoading = true;
@@ -39,14 +45,32 @@ const userSlice = createSlice({
     },
     signInUserSuccess(state, {payload}: PayloadAction<TokenInterface>) {
       state.token = payload.token;
-      state.isLoading = false;
       state.error = undefined;
+      state.isLoading = false;
     },
     signInUserFailed(state, {payload}: PayloadAction<string>) {
       state.token = undefined;
       state.error = payload;
-      state.isLoading = false;
       state.username = undefined;
+      state.isLoading = false;
+    },
+    getUserIdStart(
+      state,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      {payload}: PayloadAction<TokenizedPayload<VerifyUserTokenInterface>>,
+    ) {
+      state.userId = undefined;
+      state.error = undefined;
+      state.isLoading = true;
+    },
+    getUserIdSuccess(state, {payload}: PayloadAction<number>) {
+      state.userId = payload;
+      state.error = undefined;
+      state.isLoading = false;
+    },
+    getUserIdFailed(state, {payload}: PayloadAction<string>) {
+      state.error = payload;
+      state.isLoading = false;
     },
   },
 });
@@ -58,6 +82,9 @@ export const {
   signInUserStart,
   signInUserSuccess,
   signInUserFailed,
+  getUserIdStart,
+  getUserIdSuccess,
+  getUserIdFailed,
 } = userSlice.actions;
 
 export default userSlice.reducer;

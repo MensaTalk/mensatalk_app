@@ -7,7 +7,8 @@ const userDomain = (state: AppState) => state.user || initialState;
 
 export const getUser = createSelector([userDomain], (userState) => ({
   token: userState.token,
+  username: userState.username,
+  userId: userState.userId,
   isLoading: userState.isLoading,
   error: userState.error,
-  username: userState.username,
 }));

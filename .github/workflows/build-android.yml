@@ -1,6 +1,9 @@
-name: Build Android APK from Master branch
+name: Build Android APK main branch and pull request
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 jobs:
@@ -29,7 +32,7 @@ jobs:
       - name: Build Android APK
         run: |
           cd android && ./gradlew assembleRelease -PMYAPP_UPLOAD_STORE_PASSWORD='${{ secrets.KEYSTORE_PASSWORD }}' -PMYAPP_UPLOAD_KEY_PASSWORD='${{ secrets.KEYSTORE_PASSWORD }}'
-          mv android/app/build/outputs/apk/release/app-release.apk android/app/build/outputs/apk/release/mensatalk-dev.apk
+          mv ./app/build/outputs/apk/release/app-release.apk ./app/build/outputs/apk/release/mensatalk-dev.apk
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:

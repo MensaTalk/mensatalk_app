@@ -1,7 +1,13 @@
 import {call, put, takeEvery} from 'redux-saga/effects';
 import {PayloadAction} from '@reduxjs/toolkit';
 
-import {SignUpUserInterface, SignUserInterface, TokenInterface} from '../types';
+import {
+  SignUpUserInterface,
+  SignUserInterface,
+  TokenInterface,
+  TokenizedPayload,
+  VerifyUserTokenInterface,
+} from '../types';
 
 import {request} from '../utils/client';
 import {
@@ -11,10 +17,15 @@ import {
   signInUserStart,
   signInUserSuccess,
   signInUserFailed,
+  getUserIdStart,
+  getUserIdSuccess,
+  getUserIdFailed,
 } from '../slices/user';
 
 const apiSignUpUrl = 'https://mensatalk.herokuapp.com/register';
 const apiSignInUrl = 'https://mensatalk.herokuapp.com/authenticate';
+const apiGetUserIdUrl =
+  'https://mensatalk.herokuapp.com/verifyUserNameWithToken';
 
 function* handleSignUpUser(action: PayloadAction<SignUpUserInterface>) {
   if (action.payload.confirmedPassword !== action.payload.password) {
@@ -52,7 +63,31 @@ function* handleSignInUser(action: PayloadAction<SignUserInterface>) {
   }
 }
 
+function* handleGetUserId(
+  action: PayloadAction<TokenizedPayload<VerifyUserTokenInterface>>,
+) {
+  try {
+    const token = action.payload.token;
+    const authorization = `Bearer ${token}`;
+    const body = action.payload.payload;
+
+    const userId: number = yield call(request, apiGetUserIdUrl, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json;charset=UTF-8',
+        Authorization: authorization,
+      },
+      body: JSON.stringify(body),
+    });
+    yield put(getUserIdSuccess(userId));
+  } catch (error) {
+    yield put(getUserIdFailed(error));
+  }
+}
+
 export function* usersSaga() {
   yield takeEvery(signUpUserStart.type, handleSignUpUser);
   yield takeEvery(signInUserStart.type, handleSignInUser);
+  yield takeEvery(getUserIdStart.type, handleGetUserId);
 }

@@ -1,25 +1,29 @@
 import React from 'react';
 import {View, StyleSheet, TouchableHighlight} from 'react-native';
-import {RoomInterface} from '../../types';
+import {ProfileInterface} from '../../types';
 import Hairline from '../Header/Hairline';
 import TextElement from '../utils/TextElement';
 
-export interface RoomListItemProp {
-  room: RoomInterface;
-  onClick?: (room: RoomInterface) => void;
+export interface ProfileListItemProp {
+  profile: ProfileInterface;
+  onClick?: (profileId: number) => void;
 }
 
-const RoomListItem: React.FC<RoomListItemProp> = ({
-  room,
+const ProfileListItem: React.FC<ProfileListItemProp> = ({
+  profile,
   onClick,
-}: RoomListItemProp) => {
+}: ProfileListItemProp) => {
   return (
     <TouchableHighlight
       activeOpacity={0.85}
       underlayColor="#EAEAEA"
-      onPress={() => onClick && onClick(room)}>
+      onPress={() => onClick && onClick(profile.id)}>
       <View style={styles.item}>
-        <TextElement style={styles.contentPadding} text={room.name} size={2} />
+        <TextElement
+          style={styles.contentPadding}
+          text={profile.username}
+          size={2}
+        />
         {/*<TextElement style={styles.contentPadding} text={'bam bam'} size={3} />*/}
         <Hairline />
       </View>
@@ -37,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RoomListItem;
+export default ProfileListItem;

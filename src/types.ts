@@ -13,7 +13,7 @@ export interface MessageInterface {
 
 export interface ProfileInterface {
   id: number;
-  name: string;
+  username: string;
   age: number;
   interests: string;
   status: string;
@@ -32,6 +32,11 @@ export interface TokenInterface {
   token: string;
 }
 
+export interface VerifyUserTokenInterface {
+  jwtToken: string;
+  userName: string;
+}
+
 // Socket IO
 export interface ClientMessage {
   payload: string;
@@ -44,4 +49,7 @@ export interface ServerMessage extends ClientMessage {
 export interface TokenizedPayload<T> {
   token: string;
   payload: T;
+}
+export interface RoomEventMessage {
+  userIds: number[];
 }

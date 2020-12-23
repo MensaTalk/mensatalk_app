@@ -63,7 +63,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
         </View>
         <View style={styles.form}>
           <FormButton
-            buttonText={'Login'}
+            buttonText={'Create account'}
             onClick={validateForm}
             reverse={true}
             disabled={

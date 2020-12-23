@@ -3,8 +3,9 @@ import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 
-import ProfileListPage from '../containers/ProfileListPage';
 import ProfileDetailPage from '../containers/ProfileDetailPage';
+import ProfileEditPage from '../containers/ProfileEditPage';
+import ProfileListPage from '../containers/ProfileListPage';
 import RoomDetailPage from '../containers/RoomDetailPage';
 import RoomListPage from '../containers/RoomListPage';
 import SignUpPage from '../containers/SignUpPage';
@@ -13,6 +14,7 @@ import StartPage from '../containers/StartPage';
 
 export type RootStackParamList = {
   ProfileDetailPage: undefined;
+  ProfileEditPage: undefined;
   ProfileListPage: undefined;
   RoomDetailPage: undefined;
   RoomListPage: undefined;
@@ -40,6 +42,7 @@ export const RootNavigation: React.FC<RootNavigationProps> = ({}: RootNavigation
           name="ProfileDetailPage"
           component={ProfileDetailPage}
         />
+        <RootStack.Screen name="ProfileEditPage" component={ProfileEditPage} />
         <RootStack.Screen name="ProfileListPage" component={ProfileListPage} />
         <RootStack.Screen name="StartPage" component={StartPage} />
         <RootStack.Screen name="SignInPage" component={SignInPage} />

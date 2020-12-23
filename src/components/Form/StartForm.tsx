@@ -18,7 +18,11 @@ const StartForm: React.FC<StartupFormProps> = ({
       <View style={styles.container}>
         <Logo />
         <View style={styles.form}>
-          <FormButton buttonText={'Create Account'} onClick={onSignUp} reverse={true} />
+          <FormButton
+            buttonText={'Create account'}
+            onClick={onSignUp}
+            reverse={true}
+          />
         </View>
         <View style={styles.form}>
           <FormButton buttonText={'Login'} onClick={onSignIn} />

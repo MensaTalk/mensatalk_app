@@ -8,17 +8,29 @@ export interface RoomListProps {
   rooms: RoomInterface[];
   title: string;
   onRoomClick?: (room: RoomInterface) => void;
+  profileImageUrl?: string;
+  showProfileImage?: boolean;
+  onProfilePress?: () => void;
 }
 
 const RoomList: React.FC<RoomListProps> = ({
   rooms,
   onRoomClick,
   title,
+  profileImageUrl,
+  showProfileImage,
+  onProfilePress,
 }: RoomListProps) => {
   return (
     <>
       <View style={styles.container}>
-        <TextHeader title={title} />
+        <TextHeader
+          title={title}
+          subtitle={`${rooms.length}`} // TODO: searchbar for tables
+          imageUrl={profileImageUrl}
+          showImage={showProfileImage}
+          onImageClick={onProfilePress}
+        />
         <SafeAreaView style={styles.container}>
           <FlatList<RoomInterface>
             data={rooms}
