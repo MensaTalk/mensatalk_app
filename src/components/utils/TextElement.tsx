@@ -5,48 +5,55 @@ export interface TextElementProps {
   text: string;
   size?: number;
   style?: any;
+  numberOfLines?: number;
 }
 
 const Title: React.FC<TextElementProps> = ({
   text,
   style,
   size,
+  numberOfLines,
 }: TextElementProps) => {
   let textStyle: {};
   switch (size) {
     case 1: {
-      textStyle = styles.text1;
+      textStyle = textStyles.text1;
       break;
     }
     case 2: {
-      textStyle = styles.text2;
+      textStyle = textStyles.text2;
       break;
     }
     case 3: {
-      textStyle = styles.text3;
+      textStyle = textStyles.text3;
       break;
     }
     case 4: {
-      textStyle = styles.text4;
+      textStyle = textStyles.text4;
       break;
     }
     case 5: {
-      textStyle = styles.text5;
+      textStyle = textStyles.text5;
       break;
     }
     default: {
-      textStyle = styles.text4;
+      textStyle = textStyles.text4;
       break;
     }
   }
   return (
     <>
-      <Text style={[textStyle, style]}>{text}</Text>
+      <Text
+        numberOfLines={numberOfLines}
+        ellipsizeMode={'tail'}
+        style={[textStyle, style]}>
+        {text}
+      </Text>
     </>
   );
 };
 
-const styles = StyleSheet.create({
+export const textStyles = StyleSheet.create({
   text1: {
     fontFamily: 'Roboto',
     fontStyle: 'normal',
