@@ -8,6 +8,7 @@ import {getUser} from '../selectors/user';
 import {getRoomsStart, selectRoom} from '../slices/rooms';
 import RoomList from '../components/Room/RoomList';
 import {RoomInterface} from '../types';
+import {Button} from 'react-native';
 
 type Props = StackScreenProps<RootStackParamList, 'RoomListPage'>;
 
@@ -31,6 +32,10 @@ const RoomListPage: React.FC<Props> = ({route, navigation}: Props) => {
     navigation.navigate('RoomDetailPage');
   };
 
+  const onProfileEditClick = () => {
+    navigation.navigate('ProfileEditPage');
+  };
+
   useEffect(
     () =>
       navigation.addListener('beforeRemove', (e) => {
@@ -40,6 +45,7 @@ const RoomListPage: React.FC<Props> = ({route, navigation}: Props) => {
   );
   return (
     <>
+      <Button title="ProfileEditPage" onPress={onProfileEditClick} />
       <RoomList rooms={rooms} onRoomClick={onRoomClick} title={'Tables'} />
     </>
   );
