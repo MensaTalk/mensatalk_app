@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {StackScreenProps} from '@react-navigation/stack';
 import io from 'socket.io-client';
@@ -16,6 +16,8 @@ import {
   ServerMessage,
   MessageInterface,
   RoomEventMessage,
+  ClientTypingMessage,
+  TypingEventMessage,
 } from '../types';
 
 import {RootStackParamList} from '../navigation/RootNavigation';
@@ -34,7 +36,6 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
   const roomProfiles = useSelector(selectRoomProfiles);
   const userIds = useSelector(getUserIds);
   const user = useSelector(getUser);
-
   const selectedRoom = useSelector(getSelectedRoom);
   const {messages} = useSelector(getAllMessages);
 
@@ -75,6 +76,12 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
         console.log(`Received: ${roomEventMessage.userIds.length} userIds`);
         dispatch(setUserIds(roomEventMessage.userIds));
       });
+      clientSocket.on(
+        'typing_event',
+        (typingEventMessage: TypingEventMessage) => {
+          console.log(`typing_event: ${typingEventMessage.typings.length}`);
+        },
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedRoom]);
@@ -99,12 +106,18 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
       navigation.addListener('beforeRemove', (e: unknown) => {
         clientSocket.disconnect();
       }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [navigation],
   );
 
   const handleOnSendText = (text: string) => {
     const clientMessage: ClientMessage = {payload: text};
     clientSocket.emit('message', clientMessage);
+  };
+
+  const handleOnTypingText = (text: string) => {
+    const clientTypingMessage: ClientTypingMessage = {payload: text};
+    clientSocket.emit('typing_event', clientTypingMessage);
   };
 
   const handleOnClickHeader = () => {
@@ -116,6 +129,7 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
       <Chat
         messages={messages}
         onSendText={handleOnSendText}
+        onTypingText={handleOnTypingText}
         onClickHeader={handleOnClickHeader}
         profiles={roomProfiles}
         // @ts-ignore

@@ -14,6 +14,7 @@ export interface ChatProps {
   room: RoomInterface;
   messages: MessageInterface[];
   onSendText?: (text: string) => void;
+  onTypingText?: (text: string) => void;
   onClickHeader?: () => void;
   profiles?: ProfileInterface[];
 }
@@ -22,6 +23,7 @@ const Chat: React.FC<ChatProps> = ({
   room,
   messages,
   onSendText,
+  onTypingText,
   onClickHeader,
   profiles,
 }: ChatProps) => {
@@ -40,7 +42,7 @@ const Chat: React.FC<ChatProps> = ({
         <View style={styles.messageContainer}>
           <MessageList messages={messages} />
         </View>
-        <ChatInput onSendText={onSendText} />
+        <ChatInput onSendText={onSendText} onTypingText={onTypingText} />
       </KeyboardAvoidingView>
     </>
   );
