@@ -17,6 +17,7 @@ export interface ChatProps {
   onTypingText?: (text: string) => void;
   onClickHeader?: () => void;
   profiles?: ProfileInterface[];
+  activeWriters: string[];
 }
 
 const Chat: React.FC<ChatProps> = ({
@@ -26,17 +27,27 @@ const Chat: React.FC<ChatProps> = ({
   onTypingText,
   onClickHeader,
   profiles,
+  activeWriters,
 }: ChatProps) => {
+  const getSubtitle = (): string => {
+    let result = '';
+    if (activeWriters.length > 2) {
+      result = `${activeWriters.length} user are writing`;
+    } else if (activeWriters.length > 0) {
+      result = activeWriters.toString().replace(',', ', ') + ' writing';
+    } else if (profiles) {
+      result = profiles
+        ?.map((profile) => profile.username)
+        .toString()
+        .replace(',', ', ');
+    }
+    return result;
+  };
+  const subtitle = getSubtitle();
   return (
     <>
       <TouchableOpacity onPress={onClickHeader}>
-        <TextHeader
-          title={room.name}
-          subtitle={profiles
-            ?.map((profile) => profile.username)
-            .toString()
-            .replace(',', ', ')}
-        />
+        <TextHeader title={room.name} subtitle={subtitle} />
       </TouchableOpacity>
       <KeyboardAvoidingView style={styles.container}>
         <View style={styles.messageContainer}>
