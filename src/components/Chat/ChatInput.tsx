@@ -4,9 +4,13 @@ import TextElement from '../utils/TextElement';
 import Hairline from '../Header/Hairline';
 export interface ChatInputProps {
   onSendText?: (text: string) => void;
+  onTypingText?: (text: string) => void;
 }
 
-const ChatInput: React.FC<ChatInputProps> = ({onSendText}: ChatInputProps) => {
+const ChatInput: React.FC<ChatInputProps> = ({
+  onSendText,
+  onTypingText,
+}: ChatInputProps) => {
   const [inputText, setInputText] = React.useState('');
 
   const handleOnPress = () => {
@@ -14,6 +18,13 @@ const ChatInput: React.FC<ChatInputProps> = ({onSendText}: ChatInputProps) => {
       onSendText(inputText);
     }
     setInputText('');
+  };
+
+  const handleOnChangeText = (text: string) => {
+    setInputText(text);
+    if (text.length && onTypingText) {
+      onTypingText(text);
+    }
   };
 
   const verifyText = (text: string) => {
@@ -29,7 +40,7 @@ const ChatInput: React.FC<ChatInputProps> = ({onSendText}: ChatInputProps) => {
         <View style={{flex: 1}}>
           <TextInput
             style={styles.chatInput}
-            onChangeText={(text) => setInputText(text)}
+            onChangeText={(text) => handleOnChangeText(text)}
             value={inputText}
             editable={true}
             multiline={true}

@@ -19,6 +19,11 @@ export interface ProfileInterface {
   status: string;
 }
 
+export interface TokenizedPayload<T> {
+  token: string;
+  payload: T;
+}
+
 // JWT
 export interface SignUserInterface {
   username: string;
@@ -37,19 +42,28 @@ export interface VerifyUserTokenInterface {
   userName: string;
 }
 
-// Socket IO
+// Socket IO - Client
 export interface ClientMessage {
   payload: string;
 }
 
+export type ClientTypingMessage = ClientMessage;
+
+// Socket IO - Server
 export interface ServerMessage extends ClientMessage {
   username: string;
 }
 
-export interface TokenizedPayload<T> {
-  token: string;
-  payload: T;
-}
 export interface RoomEventMessage {
   userIds: number[];
+}
+
+export interface TypingEventMessage {
+  typings: Typing[];
+}
+export interface Typing {
+  id: number;
+  timestamp: number;
+  roomId: number;
+  userId: number;
 }
