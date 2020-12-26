@@ -18,6 +18,7 @@ import {
   RoomEventMessage,
   ClientTypingMessage,
   TypingEventMessage,
+  Typing,
 } from '../types';
 
 import {RootStackParamList} from '../navigation/RootNavigation';
@@ -39,6 +40,10 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
   const selectedRoom = useSelector(getSelectedRoom);
   const {messages} = useSelector(getAllMessages);
 
+  const [seconds, setSeconds] = useState(0);
+  const [typings, setTypings] = useState<Typing[]>([]);
+  const [timer, setTimer] = useState<NodeJS.Timeout | undefined>(undefined);
+
   useEffect(() => {
     selectedRoom &&
       dispatch(
@@ -49,6 +54,30 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
       );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, selectedRoom]);
+
+  useEffect(() => {
+    if (seconds === 3) {
+      timer && clearInterval(timer);
+      setTimer(
+        setInterval(() => {
+          // eslint-disable-next-line no-shadow
+          setSeconds((seconds) => seconds - 1);
+        }, 1000),
+      );
+    } else if (timer && seconds === 0) {
+      clearInterval(timer);
+    }
+    return () => timer && console.log('dont know why') && clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [seconds]);
+
+  useEffect(() => {
+    if (typings.length > 0) {
+      setSeconds(3);
+    } else {
+      setSeconds(0);
+    }
+  }, [typings]);
 
   useEffect(() => {
     if (selectedRoom) {
@@ -80,6 +109,7 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
         'typing_event',
         (typingEventMessage: TypingEventMessage) => {
           console.log(`typing_event: ${typingEventMessage.typings.length}`);
+          setTypings(typingEventMessage.typings);
         },
       );
     }
@@ -106,7 +136,6 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
       navigation.addListener('beforeRemove', (e: unknown) => {
         clientSocket.disconnect();
       }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [navigation],
   );
 
@@ -124,6 +153,20 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
     navigation.navigate('ProfileListPage');
   };
 
+  const getActiveWriters = (): string[] => {
+    const result: string[] = [];
+    if (seconds > 0 && typings.length > 0) {
+      for (const typing of typings) {
+        const userId = typing.userId;
+        const profile = roomProfiles.find((value) => value.id === userId);
+        if (profile) {
+          result.push(profile.username);
+        }
+      }
+    }
+    return result;
+  };
+  const activeWriters: string[] = getActiveWriters();
   return (
     <>
       <Chat
@@ -134,6 +177,7 @@ const RoomDetailPage: React.FC<Props> = ({route, navigation}: Props) => {
         profiles={roomProfiles}
         // @ts-ignore
         room={selectedRoom}
+        activeWriters={activeWriters}
       />
     </>
   );
