@@ -26,7 +26,7 @@ git clone https://github.com/mensatalk/mensatalk_app.git
 npm install
 ```
 
-### Usage
+### Run locally
 
 Run on android
 
@@ -40,10 +40,12 @@ npx react-native run-ios
 ```
 
 ### Release
+Currently we only generate a Android APK (see: [GitHub Releases](https://github.com/MensaTalk/mensatalk_app/releases))
 
+For creating your own release app, see:
 - Build for Android see [Publishing to Google Play Store](https://reactnative.dev/docs/signed-apk-android)
-- Build for iOS see [Publishing to Google Play Store](https://reactnative.dev/docs/next/publishing-to-app-store)
+- Build for iOS see [Publishing to App Store](https://reactnative.dev/docs/next/publishing-to-app-store)
 
 ## License
 
-BSD 3-Clause "New" or "Revised" see: [LICENSE](LICENSE)
+**BSD 3-Clause "New" or "Revised"** (see: [LICENSE](LICENSE))
